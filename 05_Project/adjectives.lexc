@@ -1,0 +1,553 @@
+! The main morphological differences between LF and SF
+! are in verbs and personal pronouns
+! e.g. the use of "ils" in the plural regardless of gender
+! But I'm focusing on nouns for now because that's easier to start with
+
+Multichar_Symbols
+
+%<adj%>			! Adjective
+%<noun%>		! Noun
+
+%<sg%>			! singular
+%<pl%>			! plural
+
+%<m%>			! masculine
+%<f%>			! feminine
+
+%{e%}			! feminine adjective ending
+%{s%}			! plural ending
+
+%>				! morpheme boundary
+
+LEXICON Root
+
+Adjectives;
+Nouns;
+
+! Generate masculine & feminine form of adjectives
+LEXICON Adj
+%<m%>: Number;
+%<f%>: %>%{e%} Number;
+
+! For adjectives whose masculine and feminine forms are identical
+LEXICON AdjMF
+%<m%>: Number;
+%<f%>: Number;
+
+! For invariable adjectives
+LEXICON AdjI
+%<m%>%<sg%>: #;
+%<f%>%<sg%>: #;
+%<m%>%<pl%>: #;
+%<f%>%<pl%>: #;
+
+! Generate singular & plural forms
+! of adjectives, nouns, etc.
+LEXICON Number
+%<sg%>: #;
+%<pl%>: %>%{s%} #;
+
+LEXICON Adjectives
+
+anglais%<adj%>:anglais Adj;			! ADJECTIVE "English"
+autre%<adj%>:autre AdjMF;			! ADJECTIVE "other"
+attendu%<adj%>:attendu AdjMF;		! ADJECTIVE "understood, agreed"
+bête%<adj%>:bête AdjMF;				! ADJECTIVE "foolish, crazy"
+bon%<adj%>:bon Adj;					! ADJECTIVE "good, nice, well-behaved, correct" -nne
+bien%<adj%>:bien AdjI;				! ADJECTIVE "good, well, correct"
+bas%<adj%>:bas Adj;					! ADJECTIVE "low, shallow, mean" -sse
+
+cassé%<adj%>:cassé Adj;				! ADJECTIVE "broken; broke; well-dressed"
+cadien%<adj%>:cadien Adj;			! ADJECTIVE "Cajun" -nne
+
+cochon%<adj%>:cochon Adj;			! ADJECTIVE "dirty; nasty"
+chaque%<adj%>:chaque AdjMF;			! ADJECTIVE "each, every"
+clos%<adj%>:clos Adj;				! ADJECTIVE "enclosed, closed; sealed"
+content%<adj%>:content Adj;			! ADJECTIVE "happy; content"
+chaud%<adj%>:chaud Adj;				! ADJECTIVE "hot; angry"
+
+cent%<adj%>:cent AdjMF;				! ADJECTIVE/NOUN M "a hundred"
+cinq%<adj%>:cinq AdjI;				! ADJECTIVE/NOUN M "five"
+
+décidé%<adj%>:décidé Adj;			! ADJECTIVE "determined, resolved, decided"
+défunt%<adj%>:défunt Adj;			! ADJECTIVE "deceased, defunct"
+droite%<adj%>: droite AdjMF;		! ADJECTIVE "right"
+droite%<adj%>: drète AdjMF;
+droite%<adj%>: drouète AdjMF;
+droite%<adj%>: drette AdjMF;
+dur%<adj%>:dur Adj;					! ADJECTIVE "hard"
+
+emmené%<adj%>:emmené Adj;			! ADJECTIVE "____behaved"
+fâché%<adj%>:fâché Adj;				! ADJECTIVE "angry, mad"
+faible%<adj%>:faible AdjMF;			! ADJECTIVE "weak, faint"
+fini%<adj%>:fini Adj;				! ADJECTIVE "skillful; elegant; thin" 
+fort%<adj%>:fort Adj;				! ADJECTIVE "strong, powerful"
+français%<adj%>:français Adj;		! ADJECTIVE "French"
+froid%<adj%>:froid Adj;				! ADJECTIVE "cold"
+gâté%<adj%>:gâté Adj;				! ADJECTIVE "spoiled"
+grand%<adj%>:grand Adj;				! ADJECTIVE "big, large"
+haut%<adj%>:haut Adj;				! ADJECTIVE "high, tall"
+intéressant%<adj%>:intéressant Adj;	! ADJECTIVE "interesting"
+jaune%<adj%>:jaune AdjMF;			! ADJECTIVE "yellow; golden brown; khaki"
+jeune%<adj%>:jeune AdjMF;			! ADJECTIVE "young"
+joli%<adj%>:joli Adj;				! ADJECTIVE "pretty; nice"
+juste%<adj%>:juste AdjMF;			! ADJECTIVE "just, right"
+malade%<adj%>:malade AdjMF;			! ADJECTIVE "sick"
+mauvais%<adj%>:mauvais Adj;			! ADJECTIVE "bad, mean, malicious"
+meilleur%<adj%>:meilleur Adj;		! ADJECTIVE "better, favorite, best" -e not -euse
+même%<adj%>:même AdjMF;				! ADJECTIVE "same"
+mille%<adj%>:mille AdjMF;			! ADJECTIVE "thousand"
+mort%<adj%>:mort Adj;				! ADJECTIVE "dead"
+noir%<adj%>:noir Adj;				! ADJECTIVE "dark, tragic; black"
+
+parent%<adj%>:parent AdjMF;			! ADJECTIVE "related, kin"
+passé%<adj%>:passé Adj;				! ADJECTIVE "past, previous; ago"
+pauvre%<adj%>:pauvre AdjMF;			! ADJECTIVE "poor"
+petit%<adj%>:petit Adj;				! ADJECTIVE "small, little; young"
+petit%<adj%>:pitit Adj;
+petit%<adj%>:p'tit Adj;
+petit%<adj%>:'tit Adj;
+plein%<adj%>:plein Adj;				! ADJECTIVE "full; pregnant; covered"
+plusieurs%<adj%>:plusieurs AdjMF;	! ADJECTIVE "several, some"
+premier%<adj%>:premier Adj;			! ADJECTIVE "first, primary" ADD PHON RULE FOR -ère
+pris%<adj%>:pris Adj;				! ADJECTIVE "occupied; started"
+
+seul%<adj%>:seul Adj;				! ADJECTIVE "only; single"
+triste%<adj%>:triste AdjMF;			! ADJECTIVE "sad"
+
+! Irregular adjectives handled here
+beau%<adj%>%<m%>:beau Number;			! ADJECTIVE "beautiful, large, pleasant (weather)"
+beau%<adj%>%<m%>%<sg%>:bel #;
+beau%<adj%>%<f%>:belle Number;
+
+blanc%<adj%>%<m%>:blanc Number;			! ADJECTIVE "white" -he
+blanc%<adj%>%<f%>:blanche Number;
+
+cher%<adj%>:cher Adj;					! ADJECTIVE "dear, beloved; expensive"
+
+dernier%<adj%>:dernier Adj;				! ADJECTIVE "last" -ière
+
+doux%<adj%>%<m%>:doux Number;			! ADJECTIVE "sweet" -ce
+doux%<adj%>%<f%>:douce Number;			! ADJECTIVE "sweet" -ce
+
+gros%<adj%>%<m%>:gros Number;			! ADJECTIVE "big, large" -sse
+gros%<adj%>%<f%>:grosse Number;			! ADJECTIVE "big, large" -sse
+
+long%<adj%>%<m%>:long Number;			! ADJECTIVE "long" -ue
+long%<adj%>%<f%>:longue Number;			! ADJECTIVE "long" -ue
+neuf%<adj%>:neuf Adj;					! ADJECTIVE "new" -ve
+pareil%<adj%>%<m%>:pareil Number;		! ADJECTIVE "identical; similar"
+pareil%<adj%>%<f%>:pareille Number;
+
+ce%<adj%>%<m%>%<sg%>:ce #;			! ADJECTIVE DEMONSTRATIVE "this, that, these, those"
+ce%<adj%>%<m%>%<sg%>:cet #;
+ce%<adj%>%<f%>%<sg%>:cette #;
+ce%<adj%>%<m%>%<pl%>:ces #;
+ce%<adj%>%<f%>%<pl%>:ces #;
+
+mon%<adj%>%<m%>%<sg%>:mon #;		! ADJECTIVE POSSESSIVE "my"
+mon%<adj%>%<m%>%<sg%>:m' #;
+mon%<adj%>%<f%>%<sg%>:ma #;
+mon%<adj%>%<f%>%<sg%>:m' #;
+mon%<adj%>%<m%>%<pl%>:mes #;
+mon%<adj%>%<f%>%<pl%>:mes #;
+
+ton%<adj%>%<m%>%<sg%>:ton #;		! ADJECTIVE POSSESSIVE "your (sg)"
+ton%<adj%>%<m%>%<sg%>:t' #;
+ton%<adj%>%<f%>%<sg%>:ta #;
+ton%<adj%>%<f%>%<sg%>:t' #;
+ton%<adj%>%<m%>%<pl%>:tes #;
+ton%<adj%>%<f%>%<pl%>:tes #;
+
+son%<adj%>%<m%>%<sg%>:son #;		! ADJECTIVE POSSESSIVE "his/her"
+son%<adj%>%<m%>%<sg%>:s' #;
+son%<adj%>%<f%>%<sg%>:sa #;
+son%<adj%>%<f%>%<sg%>:s' #;
+son%<adj%>%<m%>%<pl%>:ses #;
+son%<adj%>%<f%>%<pl%>:ses #;
+
+!eusse	! ADJECTIVE POSSESSIVE "their"
+eusse%<adj%>%<m%>%<sg%>:eusse #;		! ADJECTIVE DEMONSTRATIVE "this, that, these, those"
+eusse%<adj%>%<f%>%<sg%>:eusse #;
+eusse%<adj%>%<m%>%<pl%>:eusse #;
+eusse%<adj%>%<f%>%<pl%>:eusse #;
+
+quel%<adj%>%<m%>: quel Number;
+quel%<adj%>%<f%>: quelle Number;
+
+quelque%<adj%>:quelque AdjMF;			! ADJECTIVE INDEFINITE "some"
+quelque%<adj%>:quèque AdjMF;
+
+!leur	! ADJECTIVE POSSESSIVE "their"
+leur%<adj%>:leur AdjMF;					! ADJECTIVE DEMONSTRATIVE "this, that, these, those"
+
+!notre, nos	! ADJECTIVE POSSESSIVE "our" sing vs. plur
+notre%<adj%>%<m%>%<sg%>:notre #;
+notre%<adj%>%<f%>%<sg%>:notre #;
+notre%<adj%>%<m%>%<pl%>:nos #;
+notre%<adj%>%<f%>%<pl%>:nos #;
+
+votre%<adj%>%<m%>%<sg%>:votre #;
+votre%<adj%>%<f%>%<sg%>:votre #;
+votre%<adj%>%<m%>%<pl%>:vos #;
+votre%<adj%>%<f%>%<pl%>:vos #;
+
+tout%<adj%>%<m%>%<sg%>:tout #;			! ADJECTIVE "all"
+tout%<adj%>%<f%>%<sg%>:toute #;
+tout%<adj%>%<m%>%<pl%>:tous #;
+tout%<adj%>%<f%>%<pl%>:toutes #;
+
+! Numbers and English loanwords
+demi%<adj%>:demi AdjMF;				! ADJECTIVE "half"
+deux%<adj%>:deux AdjMF;				! ADJECTIVE "two"
+deuxième%<adj%>:deuxième AdjMF;		! ADJECTIVE "second"
+dix%<adj%>:dix AdjMF;				! ADJECTIVE "ten"
+dix-huit%<adj%>:dix-huit AdjMF;		! ADJECTIVE"eighteen"
+dix-neuf%<adj%>:dix-neuf AdjMF;		! ADJECTIVE "nineteen"
+douze%<adj%>:douze AdjMF;			! ADJECTIVE "twelve"
+dû%<adj%>:dû AdjMF;					! ADJECTIVE "expected, due"
+gone%<adj%>:gone AdjMF; 			! ADJECTIVE "gone, absent"
+huit%<adj%>:huit AdjMF;				! ADJECTIVE "eight"
+neuf%<adj%>:neuf AdjMF;				! ADJECTIVE "nine"
+onze%<adj%>:onze AdjMF;				! ADJECTIVE "eleven"
+
+ok%<adj%>:ok AdjI;					! ADJECTIVE "OK"
+
+LEXICON Nouns
+
+année%<noun%>%<f%>:année Number;			! NOUN F "year"
+boucherie%<noun%>%<f%>:boucherie Number;	! NOUN F "slaughter, slaughterhouse"
+boutique%<noun%>%<f%>:boutique Number;		! NOUN F "any store; grocery store; boutique"
+campagne%<noun%>%<f%>:campagne Number;		! NOUN F "country, countryside; campaign"
+canne%<noun%>%<f%>:canne Number;			! NOUN F "reed, sugarcane, drinking straw, walking cane"
+chambre%<noun%>%<f%>:chambre Number;		! NOUN F "room"
+chance%<noun%>%<f%>:chance Number;			! NOUN F "chance, risk; luck; opportunity"
+chanson%<noun%>%<f%>:chanson Number;		! NOUN F "song"
+chasse%<noun%>%<f%>:chasse Number;			! NOUN F "hunt, chase; hunting season"
+chaudière%<noun%>%<f%>:chaudière Number;	! NOUN F "cooking pot"
+cheminée%<noun%>%<f%>:cheminée Number;		! NOUN F "chimney; fireplace; mantlepiece; lamp glass"
+chose%<noun%>%<f%>:chose Number;			! NOUN F "thing"
+course%<noun%>%<f%>:course Number;			! NOUN F "running; race"
+couture%<noun%>%<f%>:couture Number;		! NOUN F "needlework; sewn seam; stitch"
+cuisine%<noun%>%<f%>:cuisine Number;		! NOUN F "kitchen" also cusine
+cuisine%<noun%>%<f%>:cusine Number;
+dame%<noun%>%<f%>:dame Number;				! NOUN F "lady, wife, queen (cards)"
+danse%<noun%>%<f%>:danse Number;			! NOUN F "dance, musical number"
+différence%<noun%>%<f%>:différence Number;	! NOUN F "difference"
+droite%<noun%>%<f%>: droite Number;			! NOUN F "right"
+droite%<noun%>%<f%>: drète Number;
+droite%<noun%>%<f%>: drouète Number;
+droite%<noun%>%<f%>: drette Number;
+eau%<noun%>%<f%>:eau Number;				! NOUN F "water"
+école%<noun%>%<f%>:école Number;			! NOUN F "school, school building, education"
+église%<noun%>%<f%>:église Number;			! NOUN F "church"
+envie%<noun%>%<f%>:envie Number;			! NOUN F "desire, longing, wish"
+étoffe%<noun%>%<f%>:étoffe Number;			! NOUN F "cloth"
+famille%<noun%>%<f%>:famille Number;		! NOUN F "family"
+femme%<noun%>%<f%>:femme Number;			! NOUN F "woman; wife"
+fille%<noun%>%<f%>:fille Number;			! NOUN F "girl; daughter"
+fois%<noun%>%<f%>:fois Number;				! NOUN F "time, occasion"
+force%<noun%>%<f%>:force Number;			! NOUN F "force, strength, power"
+glace%<noun%>%<f%>:glace Number;			! NOUN F "ice"
+graisse%<noun%>%<f%>:graisse Number;		! NOUN F "grease"
+guerre%<noun%>%<f%>:guerre Number;			! NOUN F "war"
+habitude%<noun%>%<f%>:habitude Number;		! NOUN F "habit, custom"
+heure%<noun%>%<f%>:heure Number;			! NOUN F "hour; time of day"
+histoire%<noun%>%<f%>:histoire Number;		! NOUN F "history; story"
+huître%<noun%>%<f%>:huître Number;			! NOUN F "oyster"
+idée%<noun%>%<f%>:idée Number;				! NOUN F "idea"
+journée%<noun%>%<f%>:journée Number;		! NOUN F "day, daytime"
+licence%<noun%>%<f%>:licence Number;		! NOUN F "license, permit; license plate"
+livre%<noun%>%<f%>:livre Number;			! NOUN F "pound"
+madame%<noun%>%<f%>:madame Number;			! NOUN F "Mrs./madam"
+main%<noun%>%<f%>:main Number;				! NOUN F "hand, paw, handwriting"
+maison%<noun%>%<f%>:maison Number;			! NOUN F "house, home"
+maman%<noun%>%<f%>:maman Number;			! NOUN F "mama, mom"
+maman%<noun%>%<f%>:moman Number;			! variant spelling
+maman%<noun%>%<f%>:mom Number;
+mame%<noun%>%<f%>:mame Number;				! NOUN F "mama, mom; Mrs., madam"
+manière%<noun%>%<f%>:manière Number;		! NOUN F "manner, way; manners"
+marche%<noun%>%<f%>:marche Number;			! NOUN F "walk, gait, step"
+mère%<noun%>%<f%>:mère Number;				! NOUN F "mother"
+messe%<noun%>%<f%>:messe Number;			! NOUN F "Mass"
+misère%<noun%>%<f%>:misère Number;			! NOUN F "misery; trouble"
+mort%<noun%>%<f%>:mort Number;				! NOUN F "death"
+mousse%<noun%>%<f%>:mousse Number;			! NOUN F "moss; Spanish moss"
+née%<noun%>%<f%>:née Number;				! NOUN F "maiden name"
+nuit%<noun%>%<f%>:nuit Number;				! NOUN F "night, darkness"
+paille%<noun%>%<f%>:paille Number;			! NOUN F "straw; husk"
+part%<noun%>%<f%>:part Number;				! NOUN F "share, part"
+patate%<noun%>%<f%>:patate Number;			! NOUN F "potato"
+peine%<noun%>%<f%>:peine Number;			! NOUN F "penalty; sorrow, pain"
+personne%<noun%>%<f%>:personne Number;		! NOUN F "person"
+peur%<noun%>%<f%>:peur Number;				! NOUN F "fear"
+piastre%<noun%>%<f%>:piastre Number;		! NOUN F "dollar; silver dollar fish"
+piastre%<noun%>%<f%>:piasse Number;
+pierre%<noun%>%<f%>:pierre Number;			! NOUN F "stone, rock; kidney or gallstone; kidney"
+pirogue%<noun%>%<f%>:pirogue Number;		! NOUN F "pirogue (type of canoe)"
+place%<noun%>%<f%>:place Number;			! NOUN F "place; room"
+pointe%<noun%>%<f%>:pointe Number;			! NOUN F "point"
+porte%<noun%>%<f%>:porte Number;			! NOUN F "door"
+poule%<noun%>%<f%>:poule Number;			! NOUN F "chicken"
+prière%<noun%>%<f%>:prière Number;			! NOUN F "prayer"
+récolte%<noun%>%<f%>:récolte Number;		! NOUN F "crop, harvest"
+robe%<noun%>%<f%>:robe Number;				! NOUN F "dress; robe"
+semaine%<noun%>%<f%>:semaine Number;		! NOUN F "week"
+sœur%<noun%>%<f%>:sœur Number;				! NOUN F "sister; nun";
+sœur%<noun%>%<f%>:soeur Number;
+table%<noun%>%<f%>:table Number;			! NOUN F "table"
+tante%<noun%>%<f%>:tante Number;			! NOUN F "aunt"
+terre%<noun%>%<f%>:terre Number;			! NOUN F "earth"
+tête%<noun%>%<f%>:tête Number;				! NOUN F "head"
+vache%<noun%>%<f%>:vache Number;			! NOUN F "cow"
+viande%<noun%>%<f%>:viande Number;			! NOUN F "meat"
+vie%<noun%>%<f%>:vie Number;				! NOUN F "life
+
+alentour%<noun%>%<m%>:alentour Number;		! NOUN M mostly in plural ("neighborhood") also in expressions
+an%<noun%>%<m%>:an Number;					! NOUN M "year"
+anglais%<noun%>%<m%>:anglais Number;		! NOUN M "the English language"
+arrière%<noun%>%<m%>:arrière Number;		! NOUN M "back, hind" (used in expressions mostly)
+as%<noun%>%<m%>:as Number;					! NOUN M "ace (card)"
+avant%<noun%>%<m%>:avant Number;			! NOUN M (used in expressions) "to go on"
+bal%<noun%>%<m%>:bal Number;				! NOUN M "dance, ball"
+baril%<noun%>%<m%>:baril Number;			! NOUN M "barrel, pulpit"
+bas%<noun%>%<m%>:bas Number;				! NOUN M "base, bottom, underside"
+bas%<noun%>%<m%>:bas Number;				! NOUN M "stocking, sock"
+bateau%<noun%>%<m%>:bateau Number;			! NOUN M "boat, ship"
+bayou%<noun%>%<m%>:bayou Number;			! NOUN M "bayou, stream"
+beau%<noun%>%<m%>:beau Number;				! NOUN M "boyfriend, sweetheart"
+bébé%<noun%>%<m%>:bébé Number;				! NOUN M "baby, child; youngest child"
+besoin%<noun%>%<m%>:besoin Number;			! NOUN M "need, necessity"
+bien%<noun%>%<m%>:bien Number;				! NOUN M "good, property"
+boghei%<noun%>%<m%>:boghei Number;			! NOUN M "buggy, baby carriage"
+bois%<noun%>%<m%>:bois Number;				! NOUN M "tree, stick, lumber, forest"
+bord%<noun%>%<m%>:bord Number;				! NOUN M "side, side (of family), border, shore/riverbank, margin, side (affiliation/party)"
+boudin%<noun%>%<m%>:boudin Number;			! NOUN M "boudin"
+bougre%<noun%>%<m%>:bougre Number;			! NOUN M "man, guy, fellow, chap"
+bout%<noun%>%<m%>:bout Number;				! NOUN M "small amount, tip/end/extremity"
+boutte%<noun%>%<m%>:boutte Number;
+brin%<noun%>%<m%>:brin Number;				! NOUN M "blade of grass, straw of broom; gauze, cheesecloth"
+cadien%<noun%>%<m%>:cadien Number;			! NOUN M "Cajun French"
+café%<noun%>%<m%>:café Number;				! NOUN M "coffee, cafe, bar, whirligig beetle"
+canne%<noun%>%<m%>:canne Number;			! NOUN M "tin can"
+char%<noun%>%<m%>:char Number;				! NOUN M "car, train"
+chaud%<noun%>%<m%>:chaud Number;			! NOUN M "heat, warmth, warm weather"
+chemin%<noun%>%<m%>:chemin Number;			! NOUN M "roat; highway; path"
+cheveu%<noun%>%<m%>:cheveu Number;			! NOUN M "hair" -eux
+chose%<noun%>%<m%>:chose Number;			! NOUN M "what's-his-name"
+clos%<noun%>%<m%>:clos Number;				! NOUN M "field"
+cochon%<noun%>%<m%>:cochon Number;			! NOUN M "pig; pork; an untidy man; scup"
+coeur%<noun%>%<m%>:coeur Number;			! NOUN M "heart; heart (cards); center; (figuratively) stomach; courage"
+combien%<noun%>%<m%>:combien Number;		! NOUN M "date"
+conte%<noun%>%<m%>:conte Number;			! NOUN M "story"
+côté%<noun%>%<m%>:côté Number;				! NOUN M "side"
+coton%<noun%>%<m%>:coton Number;			! NOUN M "cotton (plant or fabric); stem, stalk"
+coup%<noun%>%<m%>:coup Number;				! NOUN M "hit; time; prank; drink/shot"
+dedans%<noun%>%<m%>:dedans Number;			! NOUN M "inside, interior, innards"
+dehors%<noun%>%<m%>:dehors Number;			! NOUN M "outside"
+demi%<noun%>%<m%>:demi Number;				! NOUN M "half; shorts"
+dessous%<noun%>%<m%>:dessous Number;		! NOUN M "bottom"
+dessus%<noun%>%<m%>:dessus Number;			! NOUN M "top"
+diable%<noun%>%<m%>:diable Number;			! NOUN M "devil, demon; The Devil"
+dieu%<noun%>%<m%>:dieu Number;				! NOUN M "God, a god"
+dimanche%<noun%>%<m%>:dimanche Number;		! NOUN M "Sunday"
+docteur%<noun%>%<m%>:docteur Number;		! NOUN M "doctor, physician"
+dos%<noun%>%<m%>:dos Number;				! NOUN M "back"
+dû%<noun%>%<m%>:dû Number;					! NOUN M "right, due, dues"
+écrevisse%<noun%>%<m%>:écrevisse Number;	! NOUN M "crawfish"
+enfant%<noun%>%<m%>:enfant Number;			! NOUN M "child"
+ensemble%<noun%>%<m%>:ensemble Number;		! NOUN M "set of clothing; suit"
+est%<noun%>%<m%>:est Number;				! NOUN M "east"
+être%<noun%>%<m%>:être Number;				! NOUN M "being, thing, creature"
+fait%<noun%>%<m%>:fait Number;				! NOUN M "fact; act"
+feu%<noun%>%<m%>:feu Number;				! NOUN M "fire"
+flu%<noun%>%<m%>:flu Number;				! NOUN M "influenza"
+fort%<noun%>%<m%>:fort Number;				! NOUN M "fortification, fort"
+français%<noun%>%<m%>:français Number;		! NOUN M "mallard duck"
+français%<noun%>%<m%>:français Number;		! NOUN M "the French language"
+frère%<noun%>%<m%>:frère Number;			! NOUN M "brother"
+froid%<noun%>%<m%>:froid Number;			! NOUN M "cold"
+garçon%<noun%>%<m%>:garçon Number;			! NOUN M "boy; son"
+gâteau%<noun%>%<m%>:gâteau Number;			! NOUN M "cake, cookie"
+grand-père%<noun%>%<m%>:grand-père Number;	! NOUN M "grandfather"
+gris-gris%<noun%>%<m%>:gris-gris Number;	! NOUN M "amulet; spell; evil spirit"
+hall%<noun%>%<m%>:hall Number;				! NOUN M "hallway, dance hall"
+haut%<noun%>%<m%>:haut Number;				! NOUN M "top"
+hiver%<noun%>%<m%>:hiver Number;			! NOUN M "winter"
+homme%<noun%>%<m%>:homme Number;			! NOUN M "man; husband; boyfriend"
+jour%<noun%>%<m%>:jour Number;				! NOUN M "day"
+lac%<noun%>%<m%>:lac Number;				! NOUN M "lake"
+lait%<noun%>%<m%>:lait Number;				! NOUN M "milk"
+lendemain%<noun%>%<m%>:lendemain Number;	! NOUN M "next day, tomorrow"
+linge%<noun%>%<m%>:linge Number;			! NOUN M "cloth; clothes; menstrual pad"
+lit%<noun%>%<m%>:lit Number;				! NOUN M "bed; layer"
+livre%<noun%>%<m%>:livre Number;			! NOUN M "book"
+magasin%<noun%>%<m%>:magasin Number;		! NOUN M "barn, warehouse, store"
+maïs%<noun%>%<m%>:maïs Number;				! NOUN M "corn, maize"
+mal%<noun%>%<m%>:mal Number;				! NOUN M "wrong, pain/sore, illness, evil"
+mamou%<noun%>%<m%>:mamou Number;			! NOUN M "coral bean tree"
+manger%<noun%>%<m%>:manger Number;			! NOUN M "food"
+mari%<noun%>%<m%>:mari Number;				! NOUN M "husband"
+mariage%<noun%>%<m%>:mariage Number;		! NOUN M "marriage, wedding"
+matelas%<noun%>%<m%>:matelas Number;		! NOUN M "mattress, pad"
+matin%<noun%>%<m%>:matin Number;			! NOUN M "morning"
+mieux%<noun%>%<m%>:mieux Number;			! NOUN M used in expressions; "to do one's best"
+milieu%<noun%>%<m%>:milieu Number;			! NOUN M "middle, center"
+mille%<noun%>%<m%>:mille Number;			! NOUN M "mile"
+mois%<noun%>%<m%>:mois Number;				! NOUN M "month"
+monde%<noun%>%<m%>:monde Number;			! NOUN M "person; people; relatives; world"
+monsieur%<noun%>%<m%>:monsieur Number;		! NOUN M "mister, sir, gentleman"
+morceau%<noun%>%<m%>:morceau Number;		! NOUN M "piece"
+mort%<noun%>%<m%>:mort Number;				! NOUN M "dead person"
+mot%<noun%>%<m%>:mot Number;				! NOUN M "word"
+musicien%<noun%>%<m%>:musicien Number;		! NOUN M "musician"
+nom%<noun%>%<m%>:nom Number;				! NOUN M "name"
+non%<noun%>%<m%>:non Number;				! NOUN M "no"
+oncle%<noun%>%<m%>:oncle Number;			! NOUN M "uncle"
+pain%<noun%>%<m%>:pain Number;				! NOUN M "bread; one's living"
+papa%<noun%>%<m%>:papa Number;				! NOUN M "dad" also (pape, pop, popa, poupa)
+papa%<noun%>%<m%>:pape Number;
+papa%<noun%>%<m%>:pop Number;
+papa%<noun%>%<m%>:popa Number;
+papa%<noun%>%<m%>:poupa Number;
+parent%<noun%>%<m%>:parent Number;			! NOUN M "parent; relative"
+parler%<noun%>%<m%>:parler Number;			! NOUN M "speech"
+parti%<noun%>%<m%>:parti Number;			! NOUN M "political party"
+pas%<noun%>%<m%>:pas Number;				! NOUN M "step, pace"
+passé%<noun%>%<m%>:passé Number;			! NOUN M "past"
+père%<noun%>%<m%>:père Number;				! NOUN M "father"
+peu%<noun%>%<m%>:peu Number;				! NOUN M "little bit"
+pied%<noun%>%<m%>:pied Number;				! NOUN M "foot"
+plancher%<noun%>%<m%>:plancher Number;		! NOUN M "flooring"
+plein%<noun%>%<m%>:plein Number;			! NOUN M part of phrase "plein de la lune"
+pop%<noun%>%<m%>:pop Number;				! NOUN M "soda"
+premier%<noun%>%<m%>:premier Number;		! NOUN M "leader, head, premier"
+prêtre%<noun%>%<m%>:prêtre Number;			! NOUN M "priest"
+ras%<noun%>%<m%>:ras Number;				! NOUN M used in expressions, basically means near
+reste%<noun%>%<m%>:reste Number;			! NOUN M "rest, remainder"; in pl "human remains"
+rien%<noun%>%<m%>:rien Number;				! NOUN M "trifle"
+riz%<noun%>%<m%>:riz Number;				! NOUN M "rice"
+roi%<noun%>%<m%>:roi Number;				! NOUN M "king; spinning wheel"
+rouge%<noun%>%<m%>:rouge Number;			! NOUN M "rouge (makeup)"
+sac%<noun%>%<m%>:sac Number;				! NOUN M "sack"
+samedi%<noun%>%<m%>:samedi Number;			! NOUN M "Saturday"
+sang%<noun%>%<m%>:sang Number;				! NOUN M "blood"
+savon%<noun%>%<m%>:savon Number;			! NOUN M "soap"
+sirop%<noun%>%<m%>:sirop Number;			! NOUN M "syrup"
+soir%<noun%>%<m%>:soir Number;				! NOUN M "evening"
+son%<noun%>%<m%>:son Number;				! NOUN M "sound; sawdust, dandruff"
+stove%<noun%>%<m%>:stove Number;			! NOUN M "stove"
+sucre%<noun%>%<m%>:sucre Number;			! NOUN M "sugar"
+tac-tac%<noun%>%<m%>:tac-tac Number;		! NOUN M "popcorn; noisy chatter"
+tard%<noun%>%<m%>:tard Number;				! NOUN M in expressions "late"
+tas%<noun%>%<m%>:tas Number;				! NOUN M "heap"
+temps%<noun%>%<m%>:temps Number;			! NOUN M "time; weather"
+tête%<noun%>%<m%>:tête Number;				! NOUN M "breast"
+tour%<noun%>%<m%>:tour Number;				! NOUN M "turn, visit"
+truck%<noun%>%<m%>:truck Number;			! NOUN M "truck"
+village%<noun%>%<m%>:village Number;		! NOUN M "town, city"
+vin%<noun%>%<m%>:vin Number;				! NOUN M "wine, juice"
+violon%<noun%>%<m%>:violon Number;			! NOUN M "violin; red head duck"
+voisinage%<noun%>%<m%>:voisinage Number;	! NOUN M "neighborhood, community"
+vrai%<noun%>%<m%>:vrai Number;				! NOUN M "truth"
+wagon%<noun%>%<m%>:wagon Number;			! NOUN M "wagon"
+wagon%<noun%>%<m%>:waguine Number;
+
+quatre%<noun%>%<m%>:quatre Number;			! NOUN M "four"
+quinze%<noun%>%<m%>:quinze Number;			! NOUN M "fifteen"
+seize%<noun%>%<m%>:seize Number;			! NOUN M "sixteen"
+sept%<noun%>%<m%>:sept Number;				! NOUN M "seven"
+six%<noun%>%<m%>:six Number;				! NOUN M "six"
+trente%<noun%>%<m%>:trente Number;			! NOUN M "thirty"
+trois%<noun%>%<m%>:trois Number;			! NOUN M "three"
+vingt%<noun%>%<m%>:vingt Number;			! NOUN M "twenty"
+vingt-cinq%<noun%>%<m%>:vingt-cinq Number;	! NOUN M "twenty-five"
+! Numbers -- I'll need to sort out all of these later
+! But this is a start
+
+œil%<noun%>%<m%>%<sg%>: œil #;				! NOUN M "eye"
+œil%<noun%>%<m%>%<sg%>: oeil #;
+œil%<noun%>%<m%>%<pl%>: yeux #;
+! In CF there are many nouns that are sometimes masculine, sometimes feminine
+! Here I account for this by giving them an entry for each
+
+ami%<noun%>:ami Adj;							! NOUN M/F "friend"
+Anglais%<noun%>:Anglais Adj;					! NOUN M/F "English person"
+Cadien%<noun%>:Cadien Adj;						! NOUN M/F "Cajun"
+canard%<noun%>:canard Adj;						! NOUN M/F "duck"
+cher%<noun%>:cher Adj;							! NOUN M/F "dear"
+défunt%<noun%>:défunt Adj;						! NOUN "the deceased, the departed"
+dernier%<noun%>:dernier Adj;					! NOUN "last one"
+marié%<noun%>:marié Adj;						! NOUN M/F "groom"
+petit%<noun%>:petit Adj;						! NOUN M/F "child" also pitit, p’tit, ‘tit
+ours%<noun%>:ours Adj;							! NOUN M/F "bear"
+
+blanc%<noun%>%<m%>:blanc Number;				! NOUN M/F "white"
+blanc%<noun%>%<f%>:blanche Number;
+vieux%<noun%>%<m%>:vieux Number;				! NOUN M "old man/husband" check also derivatives?
+vieux%<noun%>%<f%>:vieille Number;				! NOUN F "old woman/wife"
+
+accordéon%<noun%>%<m%>:accordéon Number;		! NOUN M/F "accordion"
+accordéon%<noun%>%<f%>:accordéon Number;
+affaire%<noun%>%<m%>:affaire Number;			! NOUN M/F  "affair, concern, thing, business, genitals"
+affaire%<noun%>%<f%>:affaire Number;
+âge%<noun%>%<m%>:âge Number;					! NOUN M/F "age, period"
+âge%<noun%>%<f%>:âge Number;
+anse%<noun%>%<m%>:anse Number;					! NOUN M/F "semicircular handle, hook used to hang cooking pot, curve in a road"
+anse%<noun%>%<f%>:anse Number;
+après-midi%<noun%>%<m%>:après-midi Number;		! NOUN M/F "afternoon" COMPOUND
+après-midi%<noun%>%<f%>:après-midi Number;
+argent%<noun%>%<m%>:argent Number;				! NOUN M/F "money, silver, silverware"
+argent%<noun%>%<f%>:argent Number;
+bande%<noun%>%<m%>:bande Number;				! NOUN M/F "band of cloth, bandage, mechanical belt, band, pack of animals"
+bande%<noun%>%<f%>:bande Number;
+bête%<noun%>%<m%>:bête Number;					! NOUN M/F "animal; bovine; meat, particularly beef; bug"
+bête%<noun%>%<f%>:bête Number;
+électricité%<noun%>%<m%>:électricité Number;	! NOUN M/F "electricity, lightning"
+électricité%<noun%>%<f%>:électricité Number;
+été%<noun%>%<m%>:été Number;					! NOUN M/F "summer"
+été%<noun%>%<f%>:été Number;
+hôpital%<noun%>%<m%>:hôpital Number;			! NOUN M/F "hospital"
+hôpital%<noun%>%<f%>:hôpital Number;
+job%<noun%>%<m%>:job Number;					! NOUN M/F "job"
+job%<noun%>%<f%>:job Number;
+musique%<noun%>%<m%>:musique Number;			! NOUN M/F "music; musical instrument"
+musique%<noun%>%<f%>:musique Number;
+ouvrage%<noun%>%<m%>:ouvrage Number;			! NOUN M/F "task; labor; job"
+ouvrage%<noun%>%<f%>:ouvrage Number;
+pauvre%<noun%>%<m%>:pauvre Number;				! NOUN M/F "a poor person"
+pauvre%<noun%>%<f%>:pauvre Number;
+rouge%<noun%>%<m%>:rouge Number;				! NOUN "red"
+rouge%<noun%>%<f%>:rouge Number;
+terre%<noun%>%<m%>:terre Number;				! NOUN M/F "stingray"
+terre%<noun%>%<f%>:terre Number;
+terre%<noun%>%<m%>:taire Number;				! variant spellings
+terre%<noun%>%<f%>:taire Number;
+terre%<noun%>%<m%>:tère Number;
+terre%<noun%>%<f%>:tère Number;
+troisième%<noun%>%<m%>:troisième Number;		! NOUN "third"
+troisième%<noun%>%<f%>:troisième Number;
+
+un%<noun%>%<m%>%<sg%>: un #;					! NOUN "one" (number) une; ein, eun; eine, einne, eunne
+un%<noun%>%<m%>%<sg%>: ein #;
+un%<noun%>%<m%>%<sg%>: eun #;
+un%<noun%>%<f%>%<sg%>: une #;					! NOUN "one" (number) une; ein, eun; eine, einne, eunne
+un%<noun%>%<f%>%<sg%>: einne #;
+un%<noun%>%<f%>%<sg%>: eunne #;
+
+! Weird cases - only singular or plural e.g.
+André%<noun%>%<m%>%<sg%>: André #;			! NOUN M PROPER "André"
+Eunice%<noun%>%<f%>%<sg%>: Eunice #;		! NOUN PROPER "Eunice (town in Louisiana)"
+France%<noun%>%<f%>%<sg%>: France #;		! NOUN PROPER F "France"
+Hasitall%<noun%>%<m%>%<sg%>: Hasitall #;	! NOUN PROPER M? "parody of Hadachol"
+Henry%<noun%>%<m%>%<sg%>: Henry #;			! NOUN PROPER M "Henry"
+Louisiane%<noun%>%<f%>%<sg%>: Louisiane #;	! NOUN PROPER F "Louisiana"
+Montegut%<noun%>%<m%>%<sg%>: Montegut #;	! NOUN PROPER M? "Montegut"
+Texas%<noun%>%<m%>%<sg%>: Texas #;			! NOUN PROPER "Texas" (assuming M? not sure)
+
+! cheval has multiple valid plurals
+cheval%<noun%>%<m%>: cheval Number;			! NOUN M "horse; sawhorse"
+cheval%<noun%>%<m%>%<pl%>: chevaux #;
+
+!coal oil%<noun%>%<m%>:coal oil Number;	! NOUN M "coal oil, kerosene"
+!Church Point%<noun%>%<m%>:Church Point Number;	! NOUN PROPER "Church Point" not sure about gender, went w/ M

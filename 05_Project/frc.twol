@@ -1,0 +1,63 @@
+Alphabet
+
+A À Â Æ B C Ç D E É È Ê Ë F G H I Ï Î J K L M N O Ô Œ P Q R S T U Ù Û Ü V W X Y Ÿ Z
+a à â æ b c ç d e é è ê ë f g h i ï î j k l m n o ô œ p q r s t u ù û ü v w x y ÿ z '
+%>
+;
+Sets
+
+V = A À Â Æ E É È Ê Ë I Ï Î O Ô Œ U Ù Û Ü Y Ÿ
+	a à â æ e é è ê ë i ï î o ô œ u ù û ü y ÿ;
+
+C = B C Ç D F G H J K L M N P Q R S T V W X Z
+	b c ç d f g h j k l m n p q r s t v w x z;
+
+AssimS = S s X x;
+
+AE = a e A E;
+AO = a o A O;
+
+EExclusions = e n E N;
+
+IrregularPlurals = S s X x u U;
+
+Rules
+
+"Remove morpheme boundary"
+%>:0 <=> _ ;
+
+"No double -e"
+%{e%}:0 <=> e: %>: _ ;
+
+"Feminine forms of words ending in -n"
+%{e%}:ne <=> n: %>: _ ;
+
+"Adjectives ending in -er"
+e:è <=> _ r: %>: %{e%}: ;
+
+"Feminine ending voicing"
+f:v <=> _ %>: %{e%}: ;
+
+"Default -e affix"
+%{e%}:e <=> %>: _ ;
+	except EExclusions: %>: _ ;
+
+"Plurals of words ending in -s or -x"
+%{s%}:0 <=> AssimS: _ #;
+
+"Plurals of words ending in -au or -eu"
+%{s%}:x <=> AE: u: _ #;
+
+"Normal plurals"
+%{s%}:s <=> _ # ;
+	except IrregularPlurals: _ #;
+
+"Normal plurals ending in -u"
+%{s%}:s <=> u _ #;
+	except AE: u: _ #;
+	
+"Spelling alterations to preserve G pronunciation"
+g:ge <=> n: _ %>: a: ;
+
+"C softening"
+c:ç <=> _ %>: AO: ;

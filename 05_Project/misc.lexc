@@ -1,0 +1,414 @@
+! The main morphological differences between LF and SF
+! are in verbs and personal pronouns
+! e.g. the use of "ils" in the plural regardless of gender
+! But I'm focusing on nouns for now because that's easier to start with
+
+Multichar_Symbols
+
+%<adv%>			! Adverb
+%<art%>			! Article
+%<conj%>		! Conjunction
+%<contr%>		! Contraction
+%<interj%>		! Interjection
+%<prep%>		! Preposition
+%<pron%>		! Pronoun
+%<dem%>			! DEMONSTRATIVE
+
+%<indef%>		! indefinite
+%<def%>			! definite
+%<impl%>		! Impersonal
+%<dem%>			! DEMONSTRATIVE
+%<interr%>		! INTERROGATIVE
+
+%<1p%>			! person
+%<2p%>
+%<3p%>
+
+%<nom%>			! nominative case
+%<acc%>			! direct obj case
+%<dat%>			! indirect object
+%<refl%>		! reflexive
+%<disj%>		! disjunctive
+
+%<sg%>			! singular
+%<pl%>			! plural
+
+%<m%>			! masculine
+%<f%>			! feminine
+
+%>				! morpheme boundary
+
+LEXICON Root
+
+Adverbs;
+Articles;
+Conjunctions;
+Contractions;
+Interjections;
+Prepositions;
+Pronouns;
+
+! Generate masculine & feminine form of adjectives
+LEXICON Adj
+%<m%>: Number;
+%<f%>: %>e Number;
+
+! Generate singular & plural forms
+! of adjectives, nouns, etc.
+LEXICON Number
+%<sg%>: #;
+%<pl%>: %>s #;
+
+LEXICON Adverbs
+
+alentour%<adv%>: alentour #;		! ADVERB "nearby, around"
+alors%<adv%>: alors #;				! ADVERB "so, thus, then"
+après%<adv%>: après #;				! ADVERB "after"
+assez%<adv%>: assez #;				! ADVERB "enough, very, so"
+asteur%<adv%>: asteur #;			! ADVERB "now, nowadays"
+aujourd'hui%<adv%>: aujourd'hui #;	! ADVERB "today, nowadays"
+aussi%<adv%>: aussi #;				! ADVERB "also/too, so"
+aussi%<adv%>: aussitte #;			! ADVERB variant of "aussi"
+autant%<adv%>: autant #;			! ADVERB "as much, so much"
+ayoù%<adv%>: ayoù #;				! ADVERB "where"
+ayoù%<adv%>: où #;					! ADVERB variant of "ayoù"
+bas%<adv%>: bas #;					! ADVERB "below, under, quietly"
+beaucoup%<adv%>: beaucoup #;		! ADVERB "very, much"
+bien%<adv%>: bien #;				! ADVERB "well, very/really, completely, definitely"
+cochon%<adv%>: cochon #;			! ADVERB "indecently"
+combien%<adv%>: combien #;			! ADVERB "how much/many"
+comme%<adv%>: comme #;				! ADVERB "like, as; how; when; for example"
+comment%<adv%>: comment #;			! ADVERB "how"
+dedans%<adv%>: dedans #;			! ADVERB "inside"
+dehors%<adv%>: dehors #;			! ADVERB "outside"
+déjà%<adv%>: déjà #;				! ADVERB "already, previously; ever"
+demain%<adv%>: demain #;			! ADVERB "tomorrow"
+dessus%<adv%>: dessus #;			! ADVERB "on"
+droite%<adv%>: droite #;			! ADVERB "right"
+droite%<adv%>: drète #;
+droite%<adv%>: drouète #;
+droite%<adv%>: drette #;
+droite%<adv%>: droit #;
+dur%<adv%>: dur #;					! ADVERB "hard"
+encore%<adv%>: encore #;			! ADVERB "again, more"
+enfin%<adv%>: enfin #;				! ADVERB "finally"
+ensemble%<adv%>: ensemble #;		! ADVERB "together"
+fort%<adv%>: fort #;				! ADVERB "strongly"
+grand%<adv%>: grand #;				! ADVERB "wide"
+gros%<adv%>: gros #;				! ADVERB "much, a lot"
+habitude%<adv%>: habitude #;		! ADVERB "usually"
+haut%<adv%>: haut #;				! ADVERB "high"
+ici%<adv%>: ici #;					! ADVERB "here"
+ici%<adv%>: icite #;
+ici%<adv%>: icitte #;
+jamais%<adv%>: jamais #;			! ADVERB "never"
+joliment%<adv%>: joliment #;		! ADVERB "quite"
+juste%<adv%>: juste #;				! ADVERB "just, precisely"
+là-bas%<adv%>: là-bas #;			! ADVERB "over there" compound
+là-dedans%<adv%>: là-dedans #;		! ADVERB "in there, inside" compound
+là-dessus%<adv%>: là-dessus #;		! ADVERB "on there" compound
+là%<adv%>: là #;					! ADVERB "there"
+loin%<adv%>: loin #;				! ADVERB "far away, distant"
+long%<adv%>: long #;				! ADVERB "long"
+longtemps%<adv%>: longtemps #;		! ADVERB "a long time"
+mal%<adv%>: mal #;					! ADVERB "badly"
+manière%<adv%>: manière #;			! ADVERB "somewhat"
+mauvais%<adv%>: mauvais #;			! ADVERB "in a bad way"
+même%<adv%>: même #;				! ADVERB "even"
+mieux%<adv%>: mieux #;				! ADVERB "better, more, best"
+ne%<adv%>: n' #;					! ADVERB variant of "ne"
+ne%<adv%>: ne #;					! ADVERB "no, not"
+non%<adv%>: non #;					! ADVERB "no, not"
+oui%<adv%>: oui #;					! ADVERB "yes, yeah"
+oui%<adv%>: ouais #;				! ADVERB "yes, yeah"
+partout%<adv%>: partout #;			! ADVERB "everywhere; wherever"
+pas%<adv%>: pas #;					! ADVERB negation
+peu%<adv%>: peu #;					! ADVERB "little, few"
+peut-être%<adv%>: peut-être #;		! ADVERB "maybe"
+plein%<adv%>: plein #;				! ADVERB "plenty; very"
+plus%<adv%>: plus #;				! ADVERB "more"
+plus%<adv%>: plusse #;
+plus%<adv%>: pus #;
+plus%<adv%>: pu #;
+pourquoi%<adv%>: pourquoi #;		! ADVERB "why"
+pourquoi%<adv%>: parrquoi #;
+premier%<adv%>: premier #;			! ADVERB "first"
+près%<adv%>: près #;				! ADVERB "near, close"
+presque%<adv%>: presque #;			! ADVERB "almost, nearly"
+proche%<adv%>: proche #;			! ADVERB "nearly, almost"
+puis%<adv%>: puis #;				! ADVERB "then, next"
+puis%<adv%>: pis #;
+puis%<adv%>: épis #;
+puis%<adv%>: épuis #;
+!puis%<adv%>: et puis #;
+pus%<adv%>: pus #;					! ADVERB "no more, no longer"
+pus%<adv%>: pu #;
+pus%<adv%>: p'us #;
+pus%<adv%>: plus #;
+quand%<adv%>: quand #;				! ADVERB INTERROGATIVE "when"
+quand%<adv%>: équand #;
+que%<adv%>: que #;					! ADVERB "how" also qu'
+si%<adv%>: si #;					! ADVERB "so"
+souvent%<adv%>: souvent #;			! ADVERB "often"
+sûr%<adv%>: sûr #;					! ADVERB "surely"
+tant%<adv%>: tant #;				! ADVERB "so much/many"
+tard%<adv%>: tard #;				! ADVERB "late"
+tellement%<adv%>: tellement #;		! ADVERB "so, so much"
+toujours%<adv%>: toujours #;		! ADVERB "still; always"
+tout%<adv%>: tout #;				! ADVERB "wholly, entirely"
+trop%<adv%>: trop #;				! ADVERB "too"
+vite%<adv%>: vite #;				! ADVERB "quickly"
+voir%<adv%>: voir #;				! ADVERB "please; indeed"
+voir%<adv%>: oir #;
+voir%<adv%>: oire #;
+voir%<adv%>: woir #;
+vrai%<adv%>: vrai #;				! ADVERB "truly"
+y%<adv%>: y #;						! ADVERB "there"
+
+! Dictionary considers le the lemma of la
+! But here I define them separately
+LEXICON Articles
+
+à%<art%>: à #;						! ARTICLE
+à%<art%>: au #;
+à%<art%>: aux #;
+
+de%<art%>: de #;					! ARTICLE PARTICIPLE? "some, any"
+de%<art%>: d' #;
+
+le%<art%>%<def%>%<m%>%<sg%>: le #;	! ARTICLE INDEFINITE "the" M singular
+le%<art%>%<def%>%<m%>%<sg%>: l' #;	! variant
+le%<art%>%<def%>%<m%>%<pl%>: les #;	! plural
+
+la%<art%>%<def%>%<f%>%<sg%>: la #;	! F singular
+la%<art%>%<def%>%<f%>%<sg%>: l' #;	! variant
+la%<art%>%<def%>%<f%>%<pl%>: les #;	! plural
+
+un%<art%>%<indef%>%<m%>%<sg%>: un #;
+un%<art%>%<indef%>%<m%>%<sg%>: ein #;
+un%<art%>%<indef%>%<m%>%<sg%>: eun #;
+un%<art%>%<indef%>%<m%>%<pl%>: des #;
+
+une%<art%>%<indef%>%<f%>%<sg%>: une #;
+une%<art%>%<indef%>%<f%>%<sg%>: eine #;
+une%<art%>%<indef%>%<f%>%<sg%>: einne #;
+une%<art%>%<indef%>%<f%>%<sg%>: eunne #;
+une%<art%>%<indef%>%<f%>%<pl%>: des #;
+
+LEXICON Conjunctions
+
+comme%<conj%>: comme #;	! CONJUNCTION "like/as"
+donc%<conj%>: donc #;	! CONJUNCTION "therefore, so then, hence"
+et%<conj%>: et #;		! CONJUNCTION "and"
+mais%<conj%>: mais #;	! CONJUNCTION "but"
+ou%<conj%>: ou #;		! CONJUNCTION "or"
+quand%<conj%>: quand #;	! CONJUNCTION "when"
+
+puis%<conj%>: puis #;	! CONJUNCTION "and"
+puis%<conj%>: pis #;
+puis%<conj%>: épis #;
+puis%<conj%>: épuis #;
+
+que%<conj%>: que #;		! CONJUNCTION "that, than" also qu'
+qui%<conj%>: qui #;		! CONJUNCTION "if"
+si%<conj%>: si #;		! CONJUNCTION "if"
+soit%<conj%>: soit #;	! CONJUNCTION "whether, either"
+
+LEXICON Contractions
+
+c'est%<contr%>: c'est #;		! CONTRACTION "ce est"
+c'était%<contr%>: c'était #;	! CONTRACTION "ce était"
+des%<contr%>: des #;			! CONTRACTION "de les"
+du%<contr%>: du #;				! CONTRACTION "de le"
+
+LEXICON Interjections
+
+ah%<interj%>: ah #;			! INTERJECTION
+boy%<interj%>: boy #;		! INTERJECTION "oh boy, wow"
+ben%<interj%>: ben #;		! INTERJECTION "well, well then"
+hein%<interj%>: hein #;		! INTERJECTION "huh? right? isn't it?"
+lord%<interj%>: lord #;		! INTERJECTION "Oh Lord"
+monde%<interj%>: monde #;	! INTERJECTION "goodness"
+oh%<interj%>: oh #;			! INTERJECTION "oh" also sp. o
+oh%<interj%>: o #;			! INTERJECTION variant of "oh"
+quoi%<interj%>: quoi #;		! INTERJECTION "what"
+well%<interj%>: well #;		! INTERJECTION "well"
+
+!ah huh	! INTERJECTION?
+
+LEXICON Prepositions
+
+à%<prep%>: à #;				! PREPOSITION/ARTICLE
+à%<prep%>: au #;
+à%<prep%>: aux #;
+après%<prep%>: après #;		! PREPOSITION "after, about, at, in the process of"
+avant%<prep%>: avant #;		! PREPOSITION "before"
+avec%<prep%>: avec #;		! PREPOSITION "with"
+chez%<prep%>: chez #;		! PREPOSITION "to, at, at the house of"
+côté%<prep%>: côté #;		! PREPOSITION "beside; at the house of; from; toward"
+dans%<prep%>: dans #;		! PREPOSITION "in, inside"
+de%<prep%>: de #;			! PREPOSITION "of"
+de%<prep%>: d' #;
+dedans%<prep%>: dedans #;	! PREPOSITION "inside, during"
+dehors%<prep%>: dehors #;	! PREPOSITION "off; beside"
+depuis%<prep%>: depuis #;	! PREPOSITION "since, from"
+dessous%<prep%>: dessous #;	! PREPOSITION "under"
+dessus%<prep%>: dessus #;	! PREPOSITION "on"
+en%<prep%>: en #;			! PREPOSITION "in"
+entre%<prep%>: entre #;		! PREPOSITION "between"
+jusque%<prep%>:jusque #;	! PREPOSITION "as far as, until"
+jusqu'à%<prep%>:jusqu'à #;	! PREPOSITION "until"
+par%<prep%>: par #;			! PREPOSITION "by"
+pour%<prep%>: pour #;		! PREPOSITION "for"
+sans%<prep%>: sans #;		! PREPOSITION "without"
+sous%<prep%>: sous #;		! PREPOSITION "under"
+sur%<prep%>: sur #;			! PREPOSITION "on"
+
+LEXICON Pronouns
+
+! Personal Pronouns
+! Subjects
+je%<pron%>%<nom%>%<1p%>%<sg%>: je #;			! PRONOUN PERSONAL subject "I"
+je%<pron%>%<nom%>%<1p%>%<sg%>: j' #;			! PRONOUN variant of "je"
+
+tu%<pron%>%<nom%>%<2p%>%<sg%>: tu #;
+tu%<pron%>%<nom%>%<2p%>%<sg%>: t' #;
+vous%<pron%>%<nom%>%<2p%>%<sg%>: vous #;
+
+il%<pron%>%<nom%>%<3p%>%<m%>%<sg%>: il #;		! PRONOUN PERSONAL M subject "he, it"
+alle%<pron%>%<nom%>%<3p%>%<f%>%<sg%>: alle #;	! PRONOUN F SG (sub) "she"
+alle%<pron%>%<nom%>%<3p%>%<f%>%<sg%>: elle #;	! PRONOUN variant of "alle"
+alle%<pron%>%<nom%>%<3p%>%<f%>%<sg%>: a #;		! PRONOUN contraction of "alle"
+ça%<pron%>%<nom%>%<3p%>%<sg%>: ça #;
+on%<pron%>%<nom%>%<3p%>%<sg%>: on #;
+
+! even when on is 1pl it is syntactically 3sg
+
+vous%<pron%>%<nom%>%<2p%>%<pl%>: vous #;
+vous-autres%<pron%>%<nom%>%<2p%>%<pl%>: vous-autres #;
+
+ils%<pron%>%<nom%>%<3p%>%<pl%>: ils #;
+ils%<pron%>%<nom%>%<3p%>%<pl%>: elles #;	! most likely erroneous but it's in the corpus anyway
+eusse%<pron%>%<nom%>%<3p%>%<pl%>: eusse #;
+eux-autres%<pron%>%<nom%>%<3p%>%<pl%>: eux-autres #;
+
+! Direct Objects
+me%<pron%>%<acc%>%<1p%>%<sg%>: me #;
+
+te%<pron%>%<acc%>%<2p%>%<sg%>: te #;
+vous%<pron%>%<acc%>%<2p%>%<sg%>: vous #;
+
+le%<pron%>%<acc%>%<3p%>%<m%>%<sg%>: le #;
+le%<pron%>%<acc%>%<3p%>%<m%>%<sg%>: l' #;
+la%<pron%>%<acc%>%<3p%>%<f%>%<sg%>: la #;
+la%<pron%>%<acc%>%<3p%>%<f%>%<sg%>: l' #;
+
+nous%<pron%>%<acc%>%<1p%>%<pl%>: nous #;
+
+vous%<pron%>%<acc%>%<2p%>%<pl%>: vous #;
+
+les%<pron%>%<acc%>%<3p%>%<pl%>: les #;
+
+! Indirect Objects
+me%<pron%>%<dat%>%<1p%>%<sg%>: me #;
+
+te%<pron%>%<dat%>%<2p%>%<sg%>: te #;
+vous%<pron%>%<dat%>%<2p%>%<sg%>: vous #;
+
+lui%<pron%>%<dat%>%<3p%>%<sg%>: lui #;
+
+nous%<pron%>%<dat%>%<1p%>%<pl%>: nous #;
+
+vous%<pron%>%<dat%>%<2p%>%<pl%>: vous #;
+
+leur%<pron%>%<dat%>%<3p%>%<pl%>: leur #;
+yeux%<pron%>%<dat%>%<3p%>%<pl%>: yeux #;	! PRONOUN indirect object "them"
+yeux%<pron%>%<dat%>%<3p%>%<pl%>: y'eux #;
+yeux%<pron%>%<dat%>%<3p%>%<pl%>: yeur #;
+
+! Reflexives
+me%<pron%>%<refl%>%<1p%>%<sg%>: me #;
+
+te%<pron%>%<refl%>%<2p%>%<sg%>: te #;
+vous%<pron%>%<refl%>%<2p%>%<sg%>: vous #;
+
+se%<pron%>%<refl%>%<3p%>%<sg%>: se #;
+
+nous%<pron%>%<refl%>%<1p%>%<pl%>: nous #;
+
+vous%<pron%>%<refl%>%<2p%>%<pl%>: vous #;
+
+se%<pron%>%<refl%>%<3p%>%<pl%>: se #;
+
+! Disjunctives
+mon%<pron%>%<disj%>%<1p%>%<sg%>: mon #;
+mon%<pron%>%<disj%>%<1p%>%<sg%>: moi #;
+moi-même%<pron%>%<disj%>%<1p%>%<sg%>: moi-même #;		! PRONOUN PERSONAL "myself" obj of prep; tonic
+
+toi%<pron%>%<disj%>%<2p%>%<sg%>: toi #;
+vous%<pron%>%<disj%>%<2p%>%<sg%>: vous #;
+toi-même%<pron%>%<disj%>%<2p%>%<sg%>: toi-même #;
+
+lui%<pron%>%<disj%>%<3p%>%<m%>%<sg%>: lui #;
+elle%<pron%>%<disj%>%<3p%>%<f%>%<sg%>: elle #;
+lui-même%<pron%>%<disj%>%<3p%>%<f%>%<sg%>: lui-même #;
+
+nous%<pron%>%<disj%>%<2p%>%<pl%>: nous #;
+nous-autres%<pron%>%<disj%>%<2p%>%<pl%>: nous-autres #;
+
+vous%<pron%>%<disj%>%<1p%>%<pl%>: vous #;
+vous-autres%<pron%>%<disj%>%<1p%>%<pl%>: vous-autres #;
+
+eusse%<pron%>%<disj%>%<3p%>%<pl%>: eusse #;
+eux%<pron%>%<disj%>%<3p%>%<pl%>: eux #;
+eux-autres%<pron%>%<disj%>%<3p%>%<pl%>: eux-autres #;
+
+! Impersonal
+il%<pron%>%<impl%>%<nom%>: il #;
+le%<pron%>%<impl%>%<acc%>: le #;
+le%<pron%>%<impl%>%<dat%>: le #;
+se%<pron%>%<impl%>%<refl%>: se #;
+le%<pron%>%<impl%>%<disj%>: le #;
+
+en%<pron%>%<impl%>: en #;
+y%<pron%>%<impl%>: y #;					! very rare
+
+! Indefinite
+on%<pron%>%<indef%>: on #;
+
+ça%<pron%>%<indef%>: ça #;
+
+chacun%<pron%>%<indef%>%<m%>: chacun #;	! PRONOUN INDEFINITE "each, each one"
+chacun%<pron%>%<f%>: chacune #;
+
+quelqu'un%<pron%>%<indef%>%<m%>: quelqu'un #;	! PRONOUN INDEFINITE "someone"
+quelqu'un%<pron%>%<indef%>%<f%>: quelqu'une #;
+quelqu'un%<pron%>%<indef%>%<m%>: quèqu'un #;
+quelqu'un%<pron%>%<indef%>%<f%>: quèqu'une #;
+
+tous%<pron%>%<indef%>: tous #;					! PRONOUN INDEFINITE "everyone"
+personne%<pron%>%<indef%>: personne #;		! PRONOUN INDEFINITE "nobody"
+
+! Demonstrative
+celui%<pron%>%<dem%>%<m%>%<sg%>:celui #;	! PRONOUN DEMONSTRATIVE "this one, that one, these, those, the one(s)" (PLURAL: ceux, ceusses)
+celui%<pron%>%<dem%>%<f%>%<sg%>:celle #;
+celui%<pron%>%<dem%>%<m%>%<pl%>:ceux #;
+celui%<pron%>%<dem%>%<f%>%<pl%>:ceux #;
+celui%<pron%>%<dem%>%<m%>%<pl%>:ceusses #;
+celui%<pron%>%<dem%>%<f%>%<pl%>:ceusses #;
+
+ça%<pron%>%<dem%>: ça #;					! PRONOUN DEMONSTRATIVE "this, that"
+ce%<pron%>%<dem%>: ce #;					! PRONOUN DEMONSTRATIVE "what, that which"
+
+! Possessive pronouns do not exist in CF
+
+! Interrogative
+qui%<pron%>%<interr%>: qui #;
+qui%<pron%>%<interr%>: qu' #;
+quoi%<pron%>%<interr%>: quoi #;
+ça%<pron%>%<interr%>: ça #;			! PRONOUN INTERROGATIVE "what?"
+
+
+ici%<dem%>: ici #;
+ici%<dem%>: icite #;
+ici%<dem%>: icitte #;

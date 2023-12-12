@@ -1,0 +1,861 @@
+! The main morphological differences between LF and SF
+! are in verbs and personal pronouns
+! e.g. the use of "ils" in the plural regardless of gender
+! But I'm focusing on nouns for now because that's easier to start with
+
+Multichar_Symbols
+
+%<verb%>		! Verb
+
+%<sg%>			! singular
+%<pl%>			! plural
+
+%<m%>			! masculine
+%<f%>			! feminine
+
+%<c1%>			! first conjugation (-er)
+%<c2%>			! first conjugation (-ir)
+%<c3%>			! first conjugation (-re)
+%<c4%>			! first conjugation (-oir)
+
+%<inf%>			! infinitive
+%<part%>		! participle
+
+%<indic%>		! indicative
+%<cond%>		! conditional
+%<subj%>		! subjunctive
+%<imper%>		! imperative
+
+%<past%>		! past
+%<pres%>		! present
+%<fut%>			! future
+%<imperf%>		! imperfect
+%<perf%>		! perfect
+
+%>				! morpheme boundary
+
+LEXICON Root
+
+Verbs;
+
+! Generate masculine & feminine form of adjectives
+LEXICON Adj
+%<m%>: Number;
+%<f%>: %>e Number;
+
+LEXICON AdjMF
+%<m%>: Number;
+%<f%>: Number;
+! Generate singular & plural forms
+! of adjectives, nouns, etc.
+LEXICON Number
+%<sg%>: #;
+%<pl%>: %>s #;
+
+! This is the only productive verb class in LF
+LEXICON V-er
+%<c1%>%<inf%>: %>er #;							! infinitive
+%<c1%>%<pres%>%<part%>: %>ant #;				! present participle
+%<c1%>%<past%>%<part%>: %>é Adj;				! past participle
+
+%<c1%>%<pres%>%<indic%>: V-PresIndic-SG;		! present indicative
+%<c1%>%<pres%>%<indic%>: V-PresIndic-PL;		! present indicative
+%<c1%>%<imperf%>%<indic%>: V-ImperfIndic;		! imperfect indicative
+%<c1%>%<fut%>%<indic%>: %>er V-FutIndic;		! future indicative simple
+
+%<c1%>%<pres%>%<cond%>: %>er V-ImperfIndic;		! imperfect indicative
+%<c1%>%<pres%>%<subj%>: V-PresSubj;				! present subjunctive
+%<c1%>%<imperf%>%<subj%>: %>ass V-ImperfSubj;	! imperfect subjunctive
+%<c1%>%<imperf%>%<subj%>%<3p%>%<sg%>: %>ât #;	! imperfect subjunctive
+
+%<c1%>%<imper%>: V-Imperative-er;				! imperative
+
+LEXICON V-ir
+%<c2%>%<inf%>: %>ir #;							! infinitive
+%<c2%>%<pres%>%<part%>: %>ant #;				! present participle
+%<c2%>%<past%>%<part%>: %>i Adj;				! past participle
+
+%<c2%>%<pres%>%<indic%>: V-PresIndic-SG;		! present indicative
+%<c2%>%<pres%>%<indic%>: %>iss V-PresIndic-PL;	! present indicative
+%<c2%>%<imperf%>%<indic%>: %>iss V-ImperfIndic;	! imperfect indicative
+%<c2%>%<fut%>%<indic%>: %>ir V-FutIndic;		! future indicative simple
+
+%<c2%>%<pres%>%<cond%>: %>ir V-ImperfIndic;		! present conditional
+%<c2%>%<pres%>%<subj%>: %>iss V-PresSubj;		! present subjunctive
+%<c2%>%<imperf%>%<subj%>: %>iss V-ImperfSubj;	! imperfect subjunctive
+%<c2%>%<imperf%>%<subj%>%<3p%>%<sg%>: %>ît #;	! imperfect subjunctive
+
+%<c2%>%<imper%>: V-Imperative-ir;				! imperative fix this
+
+LEXICON V-re
+%<c3%>%<inf%>: %>re #;								! infinitive
+%<c3%>%<pres%>%<part%>: %>ant #;					! present participle
+%<c3%>%<past%>%<part%>: %>u Adj;					! past participle
+
+%<c3%>%<pres%>%<indic%>: V-PresIndic-SG-re;			! present indicative
+%<c3%>%<pres%>%<indic%>: V-PresIndic-PL;			! present indicative
+%<c3%>%<imperf%>%<indic%>: V-ImperfIndic-re;		! imperfect indicative
+%<c3%>%<fut%>%<indic%>: %>r V-FutIndic;				! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: %>r V-ImperfIndic-re;		! present conditional
+
+%<c3%>%<pres%>%<subj%>: %>iss V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: %>iss V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: %>ît #;		! imperfect subjunctive
+
+%<c3%>%<imper%>: V-Imperative-re;					! imperative fix this
+
+LEXICON V-Invar
+%<invar%>%<inf%>: #;						! infinitive
+%<invar%>%<pres%>%<part%>: #;				! present participle
+%<invar%>%<past%>%<part%>: #;				! past participle
+
+%<invar%>%<pres%>%<indic%>: V-InvEndings;	! present indicative
+%<invar%>%<imperf%>%<indic%>: V-InvEndings;	! imperfect indicative
+%<invar%>%<fut%>%<indic%>: V-InvEndings;	! future indicative simple
+
+%<invar%>%<pres%>%<cond%>: V-InvEndings;	! imperfect indicative
+%<invar%>%<pres%>%<subj%>: V-InvEndings;	! present subjunctive
+%<invar%>%<imperf%>%<subj%>: V-InvEndings;	! imperfect subjunctive
+
+%<invar%>%<imper%>%<2p%>%<sg%>: #;			! imperative
+%<invar%>%<imper%>%<2p%>%<pl%>: #;
+
+LEXICON V-InvEndings
+%<1p%>%<sg%>: #;
+%<2p%>%<sg%>: #;
+%<3p%>%<sg%>: #;
+%<2p%>%<pl%>: #;
+%<3p%>%<pl%>: #;
+
+LEXICON V-PresIndic-SG
+%<1p%>%<sg%>: %>e #;
+%<2p%>%<sg%>: %>es #;
+%<3p%>%<sg%>: %>e #;
+
+LEXICON V-PresIndic-SG-re
+%<1p%>%<sg%>: %>s #;
+%<2p%>%<sg%>: %>s #;
+%<3p%>%<sg%>: %>t #;
+
+LEXICON V-PresIndic-PL
+%<2p%>%<pl%>: %>ez #;
+%<3p%>%<pl%>: %>ent #;
+%<3p%>%<pl%>: %>ont #;	! This form is sometimes attested in CF
+
+LEXICON V-ImperfIndic
+%<1p%>%<sg%>: %>ais #;
+%<2p%>%<sg%>: %>ais #;
+%<3p%>%<sg%>: %>ait #;
+%<2p%>%<pl%>: %>iez #;
+%<3p%>%<pl%>: %>ient #;
+
+LEXICON V-ImperfIndic-re
+%<1p%>%<sg%>: %>ais #;
+%<2p%>%<sg%>: %>ais #;
+%<3p%>%<sg%>: %>ait #;
+%<2p%>%<pl%>: %>iez #;
+%<3p%>%<pl%>: %>aient #;
+%<3p%>%<pl%>: %>iont #;		! This form is sometimes attested in CF
+
+LEXICON V-FutIndic
+%<1p%>%<sg%>: %>ai #;
+%<2p%>%<sg%>: %>as #;
+%<3p%>%<sg%>: %>a #;
+%<2p%>%<pl%>: %>ez #;
+%<3p%>%<sg%>: %>ont #;
+
+LEXICON V-PresSubj
+%<1p%>%<sg%>: %>e #;
+%<2p%>%<sg%>: %>es #;
+%<3p%>%<sg%>: %>e #;
+%<2p%>%<pl%>: %>iez #;
+%<3p%>%<pl%>: %>ent #;
+
+! Same as pres subj except for 3sg
+LEXICON V-ImperfSubj
+%<1p%>%<sg%>: %>e #;
+%<2p%>%<sg%>: %>es #;
+%<2p%>%<pl%>: %>iez #;
+%<3p%>%<pl%>: %>ent #;
+%<3p%>%<pl%>: %>ont #;	! This form is sometimes attested in CF
+
+LEXICON V-Imperative-er
+%<2p%>%<sg%>: %>e #;
+%<2p%>%<pl%>: %>ez #;
+
+LEXICON V-Imperative-ir
+%<2p%>%<sg%>: %>is #;
+%<2p%>%<pl%>: %>issez #;
+
+LEXICON V-Imperative-re
+%<2p%>%<sg%>: %>s #;
+%<2p%>%<pl%>: %>ez #;
+
+! These are the only attested forms per Conwell and Juilland (162)
+LEXICON V-aller
+%<c1%>%<inf%>: all%>er #;								! infinitive
+%<c1%>%<pres%>%<part%>: all%>ant #;						! present participle
+%<c1%>%<past%>%<part%>: all%>é Adj;						! past participle
+%<c1%>%<past%>%<part%>: été Adj;						! past participle
+
+%<c1%>%<pres%>%<indic%>%<1p%>%<sg%>: vais #;			! present indicative
+%<c1%>%<pres%>%<indic%>%<2p%>%<sg%>: vas #;				! present indicative
+%<c1%>%<pres%>%<indic%>%<3p%>%<sg%>: va #;				! present indicative
+%<c1%>%<pres%>%<indic%>%<1p%>%<pl%>: all%>ons #;		! present indicative (nous)
+%<c1%>%<pres%>%<indic%>%<2p%>%<pl%>: all%>ez #;			! present indicative
+%<c1%>%<pres%>%<indic%>%<3p%>%<pl%>: vont #;			! present indicative
+
+%<c1%>%<imperf%>%<indic%>%<1p%>%<sg%>: all%>ais #;		! imperfect indicative
+%<c1%>%<imperf%>%<indic%>%<3p%>%<sg%>: all%>ait #;		! imperfect indicative
+%<c1%>%<imperf%>%<indic%>%<3p%>%<pl%>: all%>aient #;	! imperfect indicative
+
+%<c1%>%<fut%>%<indic%>%<2p%>%<sg%>: iras #;				! future indicative simple
+%<c1%>%<pres%>%<subj%>%<1p%>%<sg%>: aille #;			! present subjunctive
+
+%<c1%>%<imper%>%<2p%>%<sg%>: vas #;						! imperative
+%<c1%>%<imper%>%<1p%>%<pl%>: all%>ons #;				! imperative
+%<c1%>%<imper%>%<2p%>%<pl%>: vas #;						! imperative
+
+LEXICON V-appeler
+%<c1%>%<inf%>: appel%>er #;								! infinitive
+%<c1%>%<pres%>%<part%>: appel%>ant #;					! present participle
+%<c1%>%<past%>%<part%>: appel%>é Adj;					! past participle
+
+%<c1%>%<pres%>%<indic%>: appell V-PresIndic-SG;			! present indicative
+%<c1%>%<pres%>%<indic%>%<2p%>%<pl%>: appel%>ez #;		! present subjunctive
+%<c1%>%<pres%>%<indic%>%<3p%>%<pl%>: appell%>ent #;		! present subjunctive
+
+%<c1%>%<pres%>%<indic%>: V-PresIndic-PL;				! present indicative
+%<c1%>%<imperf%>%<indic%>: appel V-ImperfIndic-re;		! imperfect indicative
+%<c1%>%<fut%>%<indic%>: appell%>er V-FutIndic;			! future indicative simple
+
+%<c1%>%<pres%>%<cond%>: appell%>er V-ImperfIndic-re;	! imperfect indicative
+%<c1%>%<pres%>%<subj%>: appell V-PresIndic-SG;			! present subjunctive
+%<c1%>%<pres%>%<subj%>%<2p%>%<pl%>: appel%>iez #;		! present subjunctive
+%<c1%>%<pres%>%<subj%>%<3p%>%<pl%>: appell%>ent #;		! present subjunctive
+
+%<c1%>%<imperf%>%<subj%>: appel%>ass V-ImperfSubj;		! imperfect subjunctive
+%<c1%>%<imperf%>%<subj%>%<3p%>%<sg%>: appel%>ât #;		! imperfect subjunctive
+
+%<c1%>%<imper%>%<2p%>%<sg%>: appell%>e #;				! imperative
+%<c1%>%<imper%>%<2p%>%<pl%>: appel%>ez #;				! imperative
+
+LEXICON V-asseoir
+%<c4%>%<inf%>: asse%>oir #;								! infinitive
+%<c4%>%<pres%>%<part%>: ass%>is #;						! present participle
+%<c4%>%<past%>%<part%>: ass%>oyant Adj;					! past participle
+
+%<c4%>%<pres%>%<indic%>: assoi V-PresIndic-SG-re;		! present indicative
+%<c4%>%<pres%>%<indic%>%<1p%>%<sg%>: ass%>ieds #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<sg%>: ass%>ieds #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<sg%>: ass%>ied #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<pl%>: assoy%>ez #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<pl%>: assoi%>ent #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<pl%>: assey%>ez #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<pl%>: assey%>ent #;		! present indicative
+
+%<c4%>%<imperf%>%<indic%>: assoy V-ImperfIndic-re;		! imperfect indicative
+%<c4%>%<imperf%>%<indic%>: assey V-ImperfIndic-re;		! imperfect indicative
+
+%<c4%>%<fut%>%<indic%>: ass%>oir V-FutIndic;			! future indicative simple
+%<c4%>%<fut%>%<indic%>: ass%>iér V-FutIndic;			! future indicative simple
+
+%<c4%>%<pres%>%<cond%>: ass%>oir V-ImperfIndic-re;		! present conditional
+%<c4%>%<pres%>%<cond%>: ass%>iér V-ImperfIndic-re;		! present conditional
+
+%<c4%>%<pres%>%<subj%>: ass%>ey V-PresSubj;				! present subjunctive
+%<c4%>%<pres%>%<subj%>%<1p%>%<sg%>: assoi%>e #;			! present subjunctive
+%<c4%>%<pres%>%<subj%>%<2p%>%<sg%>: assoi%>es #;		! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<sg%>: assoi%>e #;			! present subjunctive
+%<c4%>%<pres%>%<subj%>%<2p%>%<pl%>: assoy%>ez #;		! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<pl%>: assoy%>ent #;		! present subjunctive
+
+%<c4%>%<imperf%>%<subj%>: ass%>iss V-ImperfSubj;		! imperfect subjunctive
+%<c4%>%<imperf%>%<subj%>%<3p%>%<sg%>: ass%>ît #;		! imperfect subjunctive
+
+%<c4%>%<imper%>%<2p%>%<sg%>: assois #;					! imperative
+%<c4%>%<imper%>%<2p%>%<sg%>: assieds #;					! imperative
+%<c4%>%<imper%>%<2p%>%<pl%>: assoy%>ez #;				! imperative
+%<c4%>%<imper%>%<2p%>%<pl%>: assey%>ez #;				! imperative
+
+LEXICON V-avoir
+%<c4%>%<inf%>: avoir #;								! infinitive
+%<c4%>%<pres%>%<part%>: ay%>ant #;					! present participle
+%<c4%>%<past%>%<part%>: eu Adj;						! past participle
+%<c4%>%<past%>%<part%>: av%>é Adj;					! past participle
+
+%<c4%>%<pres%>%<indic%>%<1p%>%<sg%>: ai #;			! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<sg%>: as #;
+%<c4%>%<pres%>%<indic%>%<3p%>%<sg%>: a #;
+%<c4%>%<pres%>%<indic%>%<2p%>%<pl%>: avez #;
+%<c4%>%<pres%>%<indic%>%<3p%>%<sg%>: ont #;
+
+%<c4%>%<imperf%>%<indic%>%<1p%>%<sg%>: av%>ais #;	! imperfect indicative
+%<c4%>%<imperf%>%<indic%>%<2p%>%<sg%>: av%>ais #;
+%<c4%>%<imperf%>%<indic%>%<3p%>%<sg%>: av%>ait #;
+%<c4%>%<imperf%>%<indic%>%<2p%>%<pl%>: ava%>iez #;
+%<c4%>%<imperf%>%<indic%>%<3p%>%<pl%>: ava%>ient #;
+%<c4%>%<imperf%>%<indic%>%<3p%>%<pl%>: av%>iont #;
+
+%<c4%>%<fut%>%<indic%>: aur V-FutIndic;				! future indicative simple
+
+%<c4%>%<pres%>%<cond%>: aur V-ImperfIndic-re;			! present conditional
+
+%<c4%>%<pres%>%<subj%>%<2p%>%<sg%>: aies #;			! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<sg%>: ait #;
+%<c4%>%<pres%>%<subj%>%<3p%>%<pl%>: aient #;
+
+%<c4%>%<imper%>: ay V-Imperative-re;				! imperative fix this
+
+LEXICON V-boire
+%<c3%>%<inf%>: boi%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: buv%>ant #;					! present participle
+%<c3%>%<past%>%<part%>: bu Adj;						! past participle
+
+%<c3%>%<pres%>%<indic%>: boi%> V-PresIndic-SG-re;	! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: buv%>ez #;		! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<pl%>: boi%>vent #;	! present indicative
+
+%<c3%>%<imperf%>%<indic%>: buv%> V-ImperfIndic-re;	! imperfect indicative
+
+%<c3%>%<fut%>%<indic%>: boi%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: boi%>r V-ImperfIndic-re;	! present conditional
+
+%<c3%>%<pres%>%<subj%>%<1p%>%<sg%>: boiv%>e #;		! present subjunctive
+%<c3%>%<pres%>%<subj%>%<2p%>%<sg%>: boiv%>es #;
+%<c3%>%<pres%>%<subj%>%<3p%>%<sg%>: boiv%>e #;
+%<c3%>%<pres%>%<subj%>%<2p%>%<pl%>: buv%>iez #;
+%<c3%>%<pres%>%<subj%>%<3p%>%<pl%>: boiv%>ent #;
+%<c3%>%<imperf%>%<subj%>: buss%> V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: bût #;		! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: boi%>s #;				! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: buv%>ez #;
+
+LEXICON V-connaître
+%<c3%>%<inf%>: connaît%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: connaiss%>ant #;				! present participle
+%<c3%>%<past%>%<part%>: conn%>u Adj;					! past participle
+
+%<c3%>%<pres%>%<indic%>: connai%> V-PresIndic-SG-re;	! present indicative
+%<c3%>%<pres%>%<indic%>: connaiss%> V-PresIndic-PL;		! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: connaît #;
+
+%<c3%>%<imperf%>%<indic%>: connaiss%> V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<fut%>%<indic%>: connaît%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: connaît%>r V-ImperfIndic;		! present conditional
+
+%<c3%>%<pres%>%<subj%>: connaiss V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: connusse V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: connût #;			! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: connais #;					! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: connaiss%>ez #;
+
+LEXICON V-coudre
+%<c3%>%<inf%>: coud%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: cous%>ant #;				! present participle
+%<c3%>%<past%>%<part%>: cous%>u Adj;				! past participle
+
+%<c3%>%<pres%>%<indic%>%<1p%>%<sg%>: coud%>s #;		! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<sg%>: coud%>s #;
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: coud #;
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: cous%>ez #;
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: cous%>ent #;
+
+%<c3%>%<imperf%>%<indic%>: cous V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<fut%>%<indic%>: coud%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: coud%>r V-ImperfIndic-re;	! present conditional
+
+%<c3%>%<pres%>%<subj%>: cous V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: cous%>iss V-ImperfSubj;	! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: cous%>ît #;	! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: coud%>s #;				! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: cous%>ez #;
+
+LEXICON V-croire
+%<c3%>%<inf%>: croi%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: croy%>ant #;				! present participle
+%<c3%>%<past%>%<part%>: cru Adj;					! past participle
+
+%<c3%>%<pres%>%<indic%>: croi%> V-PresIndic-SG-re;	! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: croy%>ez #;	! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<pl%>: croi%>ent #;	! present indicative
+
+%<c3%>%<imperf%>%<indic%>: croy%> V-ImperfIndic-re;	! imperfect indicative
+
+%<c3%>%<fut%>%<indic%>: croi%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: croi%>r V-ImperfIndic-re;	! present conditional
+
+%<c3%>%<pres%>%<subj%>%<1p%>%<sg%>: croi%>e #;		! present subjunctive
+%<c3%>%<pres%>%<subj%>%<2p%>%<sg%>: croi%>es #;
+%<c3%>%<pres%>%<subj%>%<3p%>%<sg%>: croi%>e #;
+%<c3%>%<pres%>%<subj%>%<2p%>%<pl%>: croy%>iez #;
+%<c3%>%<pres%>%<subj%>%<3p%>%<pl%>: croi%>ent #;
+%<c3%>%<imperf%>%<subj%>: cruss%> V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: crût #;		! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: croi%>s #;				! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: croy%>ez #;
+
+LEXICON V-cuire
+%<c3%>%<inf%>: cui%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: cuis%>ant #;				! present participle
+%<c3%>%<past%>%<part%>: cui Adj;					! past participle
+
+%<c3%>%<pres%>%<indic%>: cui V-PresIndic-SG-re;		! present indicative
+%<c3%>%<pres%>%<indic%>: cuis V-PresIndic-PL;		! present indicative
+
+%<c3%>%<imperf%>%<indic%>: cuis V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<fut%>%<indic%>: cui%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: cui%>r V-ImperfIndic-re;	! present conditional
+
+%<c3%>%<pres%>%<subj%>: cui%>s V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: cuis%>iss V-ImperfSubj;	! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: cuis%>ît #;	! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: cui%>s #;				! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: cuis%>ez #;
+
+LEXICON V-dire
+%<c3%>%<inf%>: di%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: dis%>ant #;					! present participle
+%<c3%>%<past%>%<part%>: dit Adj;					! past participle
+
+%<c3%>%<pres%>%<indic%>: di V-PresIndic-SG-re;		! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: dit%>es #;		! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<pl%>: dis%>ent #;	! present indicative
+
+%<c3%>%<imperf%>%<indic%>: dis V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<fut%>%<indic%>: di%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: di%>r V-ImperfIndic-re;		! present conditional
+
+%<c3%>%<pres%>%<subj%>: di%>s V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: diss V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: dît #;		! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: di%>s #;				! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: dit%>ez #;
+
+LEXICON V-etre
+%<c3%>%<inf%>: être #;									! infinitive
+%<c3%>%<pres%>%<part%>: ét%>ant #;						! present participle
+%<c3%>%<past%>%<part%>: été Adj;						! past participle
+
+%<c3%>%<pres%>%<indic%>%<1p%>%<sg%>: suis #;			! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<sg%>: es #;				! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: est #;				! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: êt%>es #;			! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<pl%>: sont #;			! present indicative
+
+%<c3%>%<imperf%>%<indic%>: ét V-ImperfIndic-re;			! imperfect indicative
+
+%<c3%>%<fut%>%<indic%>%<1p%>%<sg%>: sirai #;			! future indicative simple
+%<c3%>%<fut%>%<indic%>%<3p%>%<sg%>: sera #;				! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: ser  V-ImperfIndic;				! present conditional
+
+%<c3%>%<pres%>%<subj%>%<3p%>%<sg%>: soit #;				! present subjunctive
+%<c3%>%<pres%>%<subj%>%<3p%>%<pl%>: soient #;			! present subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: sois #;					! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: soyez #;					! imperative
+
+LEXICON V-faire
+%<c3%>%<inf%>: faire #;									! infinitive
+%<c3%>%<pres%>%<part%>: fais%>ant #;					! present participle
+%<c3%>%<past%>%<part%>: fait Adj;						! past participle
+
+%<c3%>%<pres%>%<indic%>%<1p%>%<sg%>: fais #;			! present indicative doublecheck these
+%<c3%>%<pres%>%<indic%>%<2p%>%<sg%>: fais #;				! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: fait #;			! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: fait%>es #;			! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<pl%>: font #;			! present indicative
+
+%<c3%>%<imperf%>%<indic%>%<1p%>%<sg%>: fais%>ais #;	! imperfect indicative
+%<c3%>%<imperf%>%<indic%>%<2p%>%<sg%>: fais%>ais #;		! imperfect indicative
+%<c3%>%<imperf%>%<indic%>%<3p%>%<sg%>: fais%>ait #;		! imperfect indicative
+%<c3%>%<imperf%>%<indic%>%<2p%>%<pl%>: fais%>ez #;		! imperfect indicative
+%<c3%>%<imperf%>%<indic%>%<3p%>%<pl%>: fais%>aient #;	! imperfect indicative
+%<c3%>%<imperf%>%<indic%>%<3p%>%<pl%>: fais%>iont #;
+
+%<c3%>%<fut%>%<indic%>: fer V-FutIndic;					! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: fer V-ImperfIndic-re;			! present conditional
+%<c3%>%<pres%>%<subj%>: fass V-FutIndic;				! present subjunctive
+%<c3%>%<imperf%>%<subj%>: fiss V-ImperfSubj;			! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: fît #;			! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: fais #;					! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: faites #;					! imperative
+
+! This verb is only conjugated in 3P.S
+LEXICON V-falloir
+%<c4%>%<inf%>: fall%>oir #;								! infinitive
+%<c4%>%<pres%>%<part%>: fall%>ant #;					! present participle
+%<c4%>%<past%>%<part%>: fall%>u AdjMF;					! past participle
+
+%<c4%>%<pres%>%<indic%>%<3p%>%<sg%>: faut #;
+%<c4%>%<imperf%>%<indic%>%<3p%>%<sg%>: fall%>ait #;
+
+%<c4%>%<fut%>%<indic%>%<3p%>%<sg%>: faudr%>a #;
+%<c4%>%<pres%>%<cond%>%<3p%>%<sg%>: faudr%>ait #;
+
+%<c4%>%<pres%>%<subj%>: faill%>e;						! present subjunctive
+%<c4%>%<imperf%>%<subj%>%<3p%>%<sg%>: fall%>ût #;		! imperfect subjunctive
+
+LEXICON V-lire
+%<c3%>%<inf%>: li%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: lis%>ant #;					! present participle
+%<c3%>%<past%>%<part%>: lu Adj;						! past participle
+
+%<c3%>%<pres%>%<indic%>: li V-PresIndic-SG-re;		! present indicative
+%<c3%>%<pres%>%<indic%>: lis V-PresIndic-PL;		! present indicative
+
+%<c3%>%<imperf%>%<indic%>: lis V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<fut%>%<indic%>: li%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: li%>r V-ImperfIndic-re;		! present conditional
+
+%<c3%>%<pres%>%<subj%>: li%>s V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: luss V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: lût #;		! imperfect subjunctive
+
+%<c3%>%<imper%>: li V-Imperative-re;				! imperative
+
+LEXICON V-mettre
+%<c3%>%<inf%>: mett%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: mett%>ant #;					! present participle
+%<c3%>%<past%>%<part%>: mis Adj;						! past participle
+
+%<c3%>%<pres%>%<indic%>%<1p%>%<sg%>: mets #;		! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<sg%>: mets #;		! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: met #;			! present indicative
+%<c3%>%<pres%>%<indic%>: mett V-PresIndic-PL;		! present indicative
+
+%<c3%>%<imperf%>%<indic%>: mett V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<fut%>%<indic%>: mett%>r V-FutIndic;			! future indicative simple
+
+%<c3%>%<pres%>%<cond%>: mett%>r V-ImperfIndic-re;	! present conditional
+
+%<c3%>%<pres%>%<subj%>: mett V-PresSubj;			! present subjunctive
+%<c3%>%<imperf%>%<subj%>: miss V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: mît #;		! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: met%>s #;				! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: mett%>ez #;
+
+LEXICON V-prendre
+%<c3%>%<inf%>: prend%>re #;							! infinitive
+%<c3%>%<pres%>%<part%>: pren%>ant #;				! present participle
+%<c3%>%<past%>%<part%>: pris Adj;					! past participle
+
+%<c3%>%<pres%>%<indic%>%<1p%>%<sg%>: prend%>s #;	! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<sg%>: prend%>s #;	! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<sg%>: prend #;		! present indicative
+%<c3%>%<pres%>%<indic%>%<2p%>%<pl%>: pren%>ez #;	! present indicative
+%<c3%>%<pres%>%<indic%>%<3p%>%<pl%>: prenn%>ent #;	! present indicative
+
+%<c3%>%<imperf%>%<indic%>: pren V-ImperfIndic-re;	! imperfect indicative
+%<c3%>%<imperf%>%<indic%>%<3p%>%<sg%>: prend%>ait #;	! present subjunctive
+
+%<c3%>%<fut%>%<indic%>: prend%>r V-FutIndic;		! future indicative simple
+%<c3%>%<pres%>%<subj%>%<2p%>%<sg%>: prenn%>es #;	! present subjunctive
+%<c3%>%<pres%>%<cond%>: prend%>r V-ImperfIndic-re;	! present conditional
+
+%<c3%>%<pres%>%<subj%>%<1p%>%<sg%>: prenn%>e #;		! present subjunctive
+%<c3%>%<pres%>%<subj%>%<2p%>%<sg%>: prenn%>es #;	! present subjunctive
+%<c3%>%<pres%>%<subj%>%<3p%>%<sg%>: prenn%>e #;		! present subjunctive
+%<c3%>%<pres%>%<subj%>%<2p%>%<pl%>: pren%>iez #;	! present subjunctive
+%<c3%>%<pres%>%<subj%>%<3p%>%<pl%>: prenn%>ent #;	! present subjunctive
+
+%<c3%>%<imperf%>%<subj%>: priss V-ImperfSubj;		! imperfect subjunctive
+%<c3%>%<imperf%>%<subj%>%<3p%>%<sg%>: prît #;		! imperfect subjunctive
+
+%<c3%>%<imper%>%<2p%>%<sg%>: prend%>s #;			! imperative
+%<c3%>%<imper%>%<2p%>%<pl%>: pren%>ez #;
+
+LEXICON V-pouvoir
+%<c4%>%<inf%>: pouv%>oir #;							! infinitive
+%<c4%>%<pres%>%<part%>: pouv%>ant #;				! present participle
+%<c4%>%<past%>%<part%>: pu Adj;						! past participle
+
+%<c4%>%<pres%>%<indic%>%<1p%>%<sg%>: peu%>x #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<sg%>: puis #;		! present indicative -- Conwell cites this as 2P
+%<c4%>%<pres%>%<indic%>%<2p%>%<sg%>: peu%>x #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<sg%>: peu%>t #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<pl%>: pouv%>ons #;	! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<pl%>: pouv%>ez #;	! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<pl%>: peuv%>ent #;	! present indicative
+
+%<c4%>%<imperf%>%<indic%>: pouv V-ImperfIndic-re;	! imperfect indicative
+%<c4%>%<fut%>%<indic%>: pour%>r V-FutIndic;			! future indicative simple
+
+%<c4%>%<pres%>%<cond%>: pour%>r V-ImperfIndic-re;	! present conditional
+
+%<c4%>%<pres%>%<subj%>: puiss V-PresSubj;			! present subjunctive
+
+%<c4%>%<imperf%>%<subj%>: puss V-ImperfSubj;		! imperfect subjunctive
+%<c4%>%<imperf%>%<subj%>%<3p%>%<sg%>: pût #;		! imperfect subjunctive
+
+LEXICON V-savoir
+%<c4%>%<inf%>: sav%>oir #;							! infinitive
+%<c4%>%<pres%>%<part%>: sach%>ant #;				! present participle
+%<c4%>%<past%>%<part%>: su Adj;						! past participle
+
+%<c4%>%<pres%>%<indic%>: sai V-PresIndic-SG-re;		! present indicative
+%<c4%>%<pres%>%<indic%>: sav V-PresIndic-PL;		! present indicative
+%<c4%>%<imperf%>%<indic%>: sav V-ImperfIndic;		! imperfect indicative
+%<c4%>%<fut%>%<indic%>: sau%>r V-FutIndic;			! future indicative simple
+
+%<c4%>%<pres%>%<cond%>: sau%>r V-ImperfIndic;		! present conditional
+
+%<c4%>%<pres%>%<subj%>: sach V-PresSubj;		! present subjunctive
+%<c4%>%<imperf%>%<subj%>: suss V-ImperfSubj;	! imperfect subjunctive
+%<c4%>%<imperf%>%<subj%>%<3p%>%<sg%>: sût #;	! imperfect subjunctive
+
+%<c4%>%<imper%>: sach V-Imperative-er;				! imperative
+
+LEXICON V-sortir
+%<c2%>%<inf%>: %>ir #;							! infinitive
+%<c2%>%<pres%>%<part%>: %>ant #;				! present participle
+%<c2%>%<past%>%<part%>: %>i Adj;				! past participle
+
+%<c2%>%<pres%>%<indic%>: V-PresIndic-SG-re;		! present indicative
+%<c2%>%<pres%>%<indic%>: V-PresIndic-PL;		! present indicative
+%<c2%>%<imperf%>%<indic%>: V-ImperfIndic;		! imperfect indicative
+%<c2%>%<fut%>%<indic%>: %>ir V-FutIndic;		! future indicative simple
+
+%<c2%>%<pres%>%<cond%>: %>ir V-ImperfIndic;		! present conditional
+%<c2%>%<pres%>%<subj%>: V-PresSubj;				! present subjunctive
+%<c2%>%<imperf%>%<subj%>: %>iss V-ImperfSubj;	! imperfect subjunctive
+%<c2%>%<imperf%>%<subj%>%<3p%>%<sg%>: %>ît #;	! imperfect subjunctive
+
+%<c2%>%<imper%>: V-Imperative-ir;				! imperative
+
+LEXICON V-tenir
+
+%<c2%>%<inf%>: ten%>ir #;							! infinitive
+%<c2%>%<pres%>%<part%>: ten%>ant #;					! present participle
+%<c2%>%<past%>%<part%>: ten%>u Adj;					! past participle
+
+%<c2%>%<pres%>%<indic%>: tien V-PresIndic-SG-re;	! present indicative
+%<c2%>%<pres%>%<indic%>%<2p%>%<pl%>: ten%>ez #;		! present indicative
+%<c2%>%<pres%>%<indic%>%<3p%>%<pl%>: tienn%>ent #;	! present indicative
+
+%<c2%>%<imperf%>%<indic%>: ten V-ImperfIndic-re;	! imperfect indicative
+%<c2%>%<fut%>%<indic%>: tiend%>r V-FutIndic;		! future indicative simple
+
+%<c2%>%<pres%>%<cond%>: tiend%>r V-ImperfIndic-re;	! present conditional
+
+%<c2%>%<pres%>%<subj%>%<1p%>%<sg%>: tienn%>e #;		! present subjunctive
+%<c2%>%<pres%>%<subj%>%<2p%>%<sg%>: tienn%>es #;	! present subjunctive
+%<c2%>%<pres%>%<subj%>%<3p%>%<sg%>: tienn%>e #;		! present subjunctive
+%<c2%>%<pres%>%<subj%>%<2p%>%<pl%>: ten%>iez #;		! present subjunctive
+%<c2%>%<pres%>%<subj%>%<3p%>%<pl%>: tienn%>ent #;	! present subjunctive
+
+%<c2%>%<imperf%>%<subj%>: tinss V-ImperfSubj;		! imperfect subjunctive
+%<c2%>%<imperf%>%<subj%>%<3p%>%<sg%>: tînt #;		! imperfect subjunctive
+
+%<c2%>%<imper%>%<2p%>%<sg%>: tiend%>s #;			! imperative
+%<c2%>%<imper%>%<2p%>%<pl%>: ten%>ez #;
+
+LEXICON V-venir
+
+%<c2%>%<inf%>: ven%>ir #;							! infinitive
+%<c2%>%<pres%>%<part%>: ven%>ant #;					! present participle
+%<c2%>%<past%>%<part%>: ven%>u Adj;					! past participle
+
+%<c2%>%<pres%>%<indic%>: vien V-PresIndic-SG-re;	! present indicative
+%<c2%>%<pres%>%<indic%>%<2p%>%<pl%>: ven%>ez #;		! present indicative
+%<c2%>%<pres%>%<indic%>%<3p%>%<pl%>: vienn%>ent #;	! present indicative
+
+%<c2%>%<imperf%>%<indic%>: ven V-ImperfIndic-re;	! imperfect indicative
+%<c2%>%<fut%>%<indic%>: viend%>r V-FutIndic;		! future indicative simple
+
+%<c2%>%<pres%>%<cond%>: viend%>r V-ImperfIndic-re;	! present conditional
+
+%<c2%>%<pres%>%<subj%>%<1p%>%<sg%>: vienn%>e #;		! present subjunctive
+%<c2%>%<pres%>%<subj%>%<2p%>%<sg%>: vienn%>es #;	! present subjunctive
+%<c2%>%<pres%>%<subj%>%<3p%>%<sg%>: vienn%>e #;		! present subjunctive
+%<c2%>%<pres%>%<subj%>%<2p%>%<pl%>: ven%>iez #;		! present subjunctive
+%<c2%>%<pres%>%<subj%>%<3p%>%<pl%>: vienn%>ent #;	! present subjunctive
+
+%<c2%>%<imperf%>%<subj%>: vinss V-ImperfSubj;		! imperfect subjunctive
+%<c2%>%<imperf%>%<subj%>%<3p%>%<sg%>: vînt #;		! imperfect subjunctive
+
+%<c2%>%<imper%>%<2p%>%<sg%>: viend%>s #;			! imperative
+%<c2%>%<imper%>%<2p%>%<pl%>: ven%>ez #;
+
+LEXICON V-voir
+%<c4%>%<inf%>: oir #;								! infinitive
+%<c4%>%<pres%>%<part%>: oy%>ant #;					! present participle
+%<c4%>%<past%>%<part%>: u Adj;						! past participle
+
+%<c4%>%<pres%>%<indic%>: oi V-PresIndic-SG-re;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<pl%>: oy%>ez #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<pl%>: oi%>ent #;		! present indicative
+
+%<c4%>%<imperf%>%<indic%>: oy V-ImperfIndic-re;		! imperfect indicative
+%<c4%>%<fut%>%<indic%>: er%>r V-FutIndic;			! future indicative simple
+
+%<c4%>%<pres%>%<cond%>: er%>r V-ImperfIndic-re;		! present conditional
+
+%<c4%>%<pres%>%<subj%>%<1p%>%<sg%>: oi%>e #;		! present subjunctive
+%<c4%>%<pres%>%<subj%>%<2p%>%<sg%>: oi%>es #;		! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<sg%>: oi%>e #;		! present subjunctive
+%<c4%>%<pres%>%<subj%>%<2p%>%<pl%>: oy%>iez #;		! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<pl%>: oi%>ent #;		! present subjunctive
+
+
+%<c4%>%<imperf%>%<subj%>: iss V-ImperfSubj;			! imperfect subjunctive
+%<c4%>%<imperf%>%<subj%>%<3p%>%<sg%>: ît #;			! imperfect subjunctive
+
+%<c4%>%<imper%>%<2p%>%<sg%>: oi%>s #;				! imperative
+%<c4%>%<imper%>%<2p%>%<pl%>: oy%>ez #;
+
+LEXICON V-vouloir
+%<c4%>%<inf%>: voul%>oir #;							! infinitive
+%<c4%>%<pres%>%<part%>: voul%>ant #;				! present participle
+%<c4%>%<past%>%<part%>: voul%>u Adj;				! past participle
+
+%<c4%>%<pres%>%<indic%>%<1p%>%<sg%>: veu%>x #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<sg%>: veu%>x #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<sg%>: veu%>t #;		! present indicative
+%<c4%>%<pres%>%<indic%>%<2p%>%<pl%>: voul%>ez #;	! present indicative
+%<c4%>%<pres%>%<indic%>%<3p%>%<pl%>: veul%>ent #;	! present indicative
+
+%<c4%>%<imperf%>%<indic%>: voul V-ImperfIndic-re;	! imperfect indicative
+%<c4%>%<fut%>%<indic%>: voud%>r V-FutIndic;			! future indicative simple
+
+%<c4%>%<pres%>%<cond%>: voud%>r V-ImperfIndic-re;	! present conditional
+
+%<c4%>%<pres%>%<subj%>%<1p%>%<sg%>: veuill%>e #;	! present subjunctive
+%<c4%>%<pres%>%<subj%>%<2p%>%<sg%>: veuill%>es #;	! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<sg%>: veuill%>e #;	! present subjunctive
+%<c4%>%<pres%>%<subj%>%<2p%>%<pl%>: voul%>iez #;	! present subjunctive
+%<c4%>%<pres%>%<subj%>%<3p%>%<pl%>: veuill%>ent #;	! present subjunctive
+
+%<c4%>%<imperf%>%<subj%>: vouluss V-ImperfSubj;		! imperfect subjunctive
+%<c4%>%<imperf%>%<subj%>%<3p%>%<sg%>: voulût #;		! imperfect subjunctive
+
+LEXICON Verbs
+
+acheter%<verb%>: achet V-er;		! VERB TRANSITIVE/PRON. tr = "buy, purchase"; pron = "to buy for oneself"
+aider%<verb%>: aid V-er;			! VERB INTRANSITIVE/PRON. intr = "to help", pron = "to help oneself or each other"
+aimer%<verb%>: aim V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON. "to love, like" pron = "to love oneself or each other"
+aller%<verb%>:  V-aller;			! VERB INTRANSITIVE/PRON/AUX intr = "to go, be"; pron s'en aller = "to leave"; aux = "to be going to"
+amener%<verb%>: amen V-er;			! VERB TRANSITIVE/PRON trans = "to bring"; pron = "to bring along (for oneself)"
+appeler%<verb%>: V-appeler;		! VERB TRANSITIVE/INTRANSITIVE/PRON trans = "to call", intr = "to call out", pron = "to be called"
+apprendre%<verb%>: ap V-prendre;	! VERB TRANSITIVE "to learn/teach"
+arrêter%<verb%>: arrêt V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to stop"
+arriver%<verb%>: arriv V-er;		! VERB INTRANSITIVE "to arrive, happen, succeed"
+asseoir%<verb%>: V-asseoir;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to seat; to sit"
+attendre%<verb%>: attend V-re;		! VERB "to hear"
+avoir%<verb%>: V-avoir;				! VERB TRANSITIVE/AUX "to have, be" SUPER IRREGULAR
+boire%<verb%>: V-boire;				! VERB TRANSITIVE/INTRANSITIVE trans = "to drink"; intrans = "to drink alcohol" IRREGULAR
+bouillir%<verb%>: bouill V-ir;		! VERB TRANSITIVE/INTRANSITIVE "to boil"
+chanter%<verb%>: chant V-er;		! VERB TRANSITIVE/INTRANSITIVE "to sing"
+chercher%<verb%>: cherch V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to search for; to search; to look for each other"
+commencer%<verb%>: commenc V-er;	! VERB TRANSITIVE/INTRANSITIVE "to begin"
+comprendre%<verb%>: comprend V-re;	! VERB TRANSITIVE/PRON "to understand"
+connaître%<verb%>: V-connaître;		! VERB TRANSITIVE/PRON "to know"
+coucher%<verb%>: couch V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON trans = "to put to bed; flatten" intr = "to sleep"; pron = "go to bed; sleep"
+coudre%<verb%>: V-coudre;			! VERB TRANSITIVE/INTRANSITIVE "to sew" IRREGULAR
+courser%<verb%>: cours V-er;		! VERB TRANSITIVE/INTRANSITIVE "to chase, to race"
+croire%<verb%>: V-croire;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to believe" vowel weirdness
+cuire%<verb%>: V-cuire;				! VERB TRANSITIVE/INTRANSITIVE/PRON "to cook"
+danser%<verb%>: dans V-er;			! VERB INTRANSITIVE "to dance"
+décider%<verb%>: décid V-er;		! VERB "to decide"
+demander%<verb%>: demand V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON trans = "to request, ask, demand" intr = "to ask (for charity)" pron = "to ask oneself"
+déménager%<verb%>: déménag V-er;	! VERB TRANSITIVE/INTRANSITIVE "to move"
+dire%<verb%>: V-dire;				! VERB TRANSITIVE? "to say, tell"
+donner%<verb%>: donn V-er;			! VERB TRANSITIVE/INTRANSITIVE "to give"
+doucer%<verb%>: douc V-er;			! VERB TRANSITIVE "to sweeten"
+écouter%<verb%>: écout V-er;		! VERB TRANSITIVE/INTRANSITIVE "to listen"
+écrire%<verb%>: écri V-re;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to write"
+élever%<verb%>: élev V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to raise; grow; rise"
+emmener%<verb%>: emmen V-er;		! VERB TRANSITIVE/INTRANSITIVE "to carry away; to carry on"
+entrer%<verb%>: entr V-er;			! VERB INTRANSITIVE "to go in"
+essayer%<verb%>: essay V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to try"
+être%<verb%>: V-etre;				! VERB "to be"
+étouffer%<verb%>: étouff V-er;		! VERB TRANSITIVE/PRON "to suffocate"
+fâcher%<verb%>: fâch V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to become angry"
+faire%<verb%>: V-faire;				! VERB TRANSITIVE/INTRANSITIVE/PRON "to make"
+falloir%<verb%>: V-falloir;			! VERB (only "faut") "to have to, to be necessary"
+finir%<verb%>: fin V-ir;			! VERB TRANSITIVE/INTRANSITIVE "to finish"
+forcer%<verb%>: forc V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to force"
+gâter%<verb%>: gât V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to spoil"
+gone%<verb%>: gone V-Invar;			! VERB INTRANSITIVE INVARIABLE "to leave"
+graisser%<verb%>: graiss V-er;		! VERB TRANSITIVE/PRON "to grease"
+gris-gris%<verb%>: gris-gris V-Invar;	! VERB TRANSITIVE INVARIABLE "to cast a spell on"
+importer%<verb%>: import V-er;		! VERB TRANSITIVE "to import"
+jouer%<verb%>: jou V-er;			! VERB TRANSITIVE/INTRANSITIVE "to play"
+laver%<verb%>: lav V-er;			! VERB
+lever%<verb%>: lev V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to raise"
+lire%<verb%>: V-lire;				! VERB TRANSITIVE "to read" IRREGULAR
+livrer%<verb%>: livr V-er;			! VERB TRANSITIVE/PRON "to cede, give up"
+manger%<verb%>: mang V-er;			! VERB TRANSITIVE/PRON "to eat, erode" PHONOLOGY CHECK
+marcher%<verb%>: march V-er;		! VERB INTRANSITIVE "to walk"
+marier%<verb%>: mari V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to marry, to join; to get married"
+mettre%<verb%>: V-mettre;			! VERB TRANSITIVE/PRON "to put; to put on oneself, to go" IRREGULAR
+montrer%<verb%>: montr V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to show; to appear; to show oneself"
+mousser%<verb%>: mouss V-er;		! VERB TRANSITIVE "to hurry"
+parler%<verb%>: parl V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to speak"
+passer%<verb%>: pass V-er;			! VERB TRANSITIVE "to pass"
+penser%<verb%>: pens V-er;			! VERB TRANSITIVE/INTRANSITIVE "to think"
+perdre%<verb%>: perd V-re;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to lose"
+plancher%<verb%>: planch V-er;		! VERB TRANSITIVE "to floor" also planchonner
+planter%<verb%>: plant V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to plant; to stick"
+pointer%<verb%>: point V-er;		! VERB TRANSITIVE/INTRANSITIVE "to point"
+porter%<verb%>: port V-er;			! VERB TRANSITIVE "to carry"
+pourrir%<verb%>: pourr V-ir;		! VERB TRANSITIVE/INTRANSITIVE "to cause to rot; to rot"
+pouvoir%<verb%>: V-pouvoir;			! VERB INTRANSITIVE "to be able to, can"
+prendre%<verb%>: V-prendre;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to take"
+quitter%<verb%>: quitt V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to allow"
+ramasser%<verb%>: ramass V-er;		! VERB TRANSITIVE/PRON "to pick up; to be deposited"
+rappeller%<verb%>: rappell V-er;	! VERB TRANSITIVE/PRON "to remember; to call back; to remember"
+récolter%<verb%>: récolt V-er;		! VERB TRANSITIVE "to harvest" consider re- compounding
+rejoindre%<verb%>: rejoind V-re;	! VERB TRANSITIVE/PRON "to meet up with; to meet each other"
+rencontrer%<verb%>: rencontr V-er;	! VERB TRANSITIVE/INTRANSITIVE/PRON "to meet"
+rentrer%<verb%>: rentr V-er;		! VERB TRANSITIVE/INTRANSITIVE "to bring in; to enter"
+rester%<verb%>: rest V-er;			! VERB INTRANSITIVE "to remain"
+revenir%<verb%>: re V-venir;		! VERB INTRANSITIVE/PRON "to return"
+saler%<verb%>: sal V-er;			! VERB "to salt"
+savoir%<verb%>: V-savoir;			! 
+sentir%<verb%>: sent V-sortir;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to feel; to smell; to feel"
+soigner%<verb%>: soign V-er;		! VERB TRANSITIVE/PRON "to take care of"
+sortir%<verb%>: sort V-sortir;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to bring out; to come out; to find a way out" SLIGHTLY IRREGULAR
+sucrer%<verb%>: sucr V-er;			! VERB TRANSITIVE "to sweeten; to trick"
+
+tenir%<verb%>: V-tenir;				! VERB TRANSITIVE/INTRANSITIVE/PRON "to hold"
+
+tirer%<verb%>: tir V-er;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to pull, shoot; to serve; to jump"
+
+tomber%<verb%>: tomb V-er;			! VERB TRANSITIVE/INTRANSITIVE "to drop"
+
+travailler%<verb%>: travaill V-er;	! VERB TRANSITIVE/INTRANSITIVE "to work"
+trouver%<verb%>: trouv V-er;		! VERB TRANSITIVE/PRON "to find"
+tuer%<verb%>: tu V-er;				! VERB TRANSITIVE/PRON "to kill"
+vacher%<verb%>: vach V-er;			! VERB PRON "to fall down"
+vendre%<verb%>: vend V-re;			! VERB TRANSITIVE/PRON "to sell; to be sold"
+
+venir%<verb%>: V-venir;				! VERB INTRANSITIVE/PRON "to come" also viendre
+
+visiter%<verb%>: visit V-er;		! VERB TRANSITIVE/INTRANSITIVE/PRON "to visit"
+
+voir%<verb%>: v V-voir;				! VERB TRANSITIVE/INTRANSITIVE/PRON "to see, to endure; to menstruate"
+voir%<verb%>: V-voir;
+
+vouloir%<verb%>: V-vouloir;			! VERB TRANSITIVE/INTRANSITIVE/PRON "to want, wish"
+voyer%<verb%>: voy V-er;			! VERB TRANSITIVE "to throw"
+
+back%<verb%>: back V-Invar;			! VERB TRANSITIVE/INTRANSITIVE "to back" invariable
