@@ -26,9 +26,7 @@ def word_order(iter):
     for sentence in iter:
         for token in sentence:
             t = token.conll().split("\t")
-            #print(t)
             if t[7] == 'obj':
-                #print(t)
                 head = sentence[t[6]].conll().split('\t')
                 if head[3] == 'VERB':
                     if head[0] > t[0]:
@@ -48,7 +46,7 @@ def main():
     gd = 'gd.conllu'
     ur = 'ur.conllu'
     
-    langs = [ar, zh, en, fr, ja, la, pt, ru, gd, ur]
+    langs = ['ar', 'zh', 'en', 'fr', 'ja', 'la', 'pt', 'ru', 'gd', 'ur']
     x = []
     y = []
 

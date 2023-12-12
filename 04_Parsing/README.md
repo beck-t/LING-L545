@@ -4,4 +4,4 @@ I performed a word order study on Arabic, Chinese, English, French, Japanese, La
 
 My results are below:
 
-![A graph of OV vs. VO word order in 10 languages.](/parsing.png)
+![A graph of OV vs. VO word order in 10 languages.](/04_Parsing/parsing.png)
