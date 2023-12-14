@@ -1,0 +1,23 @@
+DELIMITERS = "." ;
+
+LIST FINITE = VerbForm=Fin;
+LIST THE = "the" ;
+LIST VPLURAL = (VERB Number=Plur);
+LIST VSING = (VERB Number=Sing);
+LIST V1P = (VERB Person=1);
+LIST V2P = (VERB Person=2);
+LIST V3P = (VERB Person=3);
+LIST PNPLURAL = (PRON Case=Nom Number=Plur);
+LIST PNSING = (PRON Case=Nom Number=Sing);
+LIST PN1P = (PRON Case=Nom Person=1 PronType=Prs);
+LIST PN2P = (PRON Case=Nom Person=2 PronType=Prs);
+LIST PN3P = (PRON Case=Nom Person=3 PronType=Prs);
+
+SECTION
+
+REMOVE FINITE IF (-1 THE) ;
+REMOVE VPLURAL IF (-1C PNSING);
+REMOVE VSING IF (-1C PNPLURAL);
+REMOVE V1P IF ((-1C PN2P) or (-1C PN3P));
+REMOVE V2P IF ((-1C PN3P) or (-1C PN1P));
+REMOVE V3P IF ((-1C PN1P) or (-1C PN2P));
