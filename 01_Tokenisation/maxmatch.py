@@ -16,6 +16,7 @@ def maxmatch(t, dictionary):
         return t + " "
     return ""
 
+# Get the official tokenization of the words
 def ref_sentence(s):
     r = ""
     for token in s:
@@ -27,7 +28,7 @@ def main():
     testiter = pyconll.load.iter_from_file('test.conllu')
 
     dict = trainfile.readline().split(',')
-    dict += [',','“','”']
+    dict += [',','“','”'] # manually adding punctuation marks
     output = ""
     reference = ""
 

@@ -10,8 +10,8 @@ There was also a separate "declension" included for the indeclinable noun *nihil
 
 Third declension nouns have consistently irregular nominative singular forms, so they were defined a little differently than the rest. For example, *rēx, rēgis* was implemented as:
 
-> rēx%<noun%>%<nom%>%<sg%>: rēx #;
-> rēx%<noun%>: rēg N3-MF;
+> `rēx%<noun%>%<nom%>%<sg%>: rēx #;`
+> `rēx%<noun%>: rēg N3-MF;`
 
-There were only a handful of relevant phonological processes here: the -er and -ir second-declension nouns and some variants of the fourth and fifth declensions.
+There was really only one relevant phonological process here: the i-stem variation in the fifth declension.
 
