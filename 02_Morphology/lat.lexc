@@ -1,0 +1,317 @@
+! Choose a language and implement basic noun morphotactics for 20 nouns, including any cases, possessives and productive derivations.
+
+Multichar_Symbols
+%<noun%>			! noun
+
+%<m%>				! masculine
+%<f%>				! feminine
+%<n%>				! neuter
+
+!	%<d1%>			! first declension
+!	%<d2%>			! second declension
+!	%<d3%>			! third declension
+!	%<d4%>			! fourth declension
+!	%<d5%>			! fifth declension
+
+%<nom%>				! nominative case
+%<gen%>				! genitive case
+%<dat%>				! dative case
+%<acc%>				! accusative case
+%<abl%>				! ablative case
+%<voc%>				! vocative case
+%<loc%>				! locative case
+
+%<sg%>				! singular
+%<pl%>				! plural
+
+
+! Most if not all declensions have variants
+! for Greek loanwords. However, since there are
+! none in the 20 most frequent nouns in the corpus,
+! I am omitting those rules.
+LEXICON Root
+
+Declension1;
+Declension2;
+Declension3;
+Declension4;
+Declension5;
+Indeclinable;
+! TODO: fix/finish gender tags
+
+! First-declension nouns
+! This declension is pretty regular except for Greek loanwords
+! Of which there are none in the top 20 most frequent nouns
+! So I do not include the rules for those
+LEXICON N1
+N1-SG;
+N1-PL;
+
+LEXICON N1-dea
+N1-SG;
+%<nom%>%<pl%>: %>ae #;
+%<gen%>%<pl%>: %>ārum #;
+%<dat%>%<pl%>: %>ābus #;
+%<acc%>%<pl%>: %>ās #;
+%<abl%>%<pl%>: %>ābus #;
+%<voc%>%<pl%>: %>ae #;
+
+LEXICON N1-SG
+%<nom%>%<sg%>: %>a #;
+%<gen%>%<sg%>: %>ae #;
+%<dat%>%<sg%>: %>ae #;
+%<acc%>%<sg%>: %>am #;
+%<abl%>%<sg%>: %>ā #;
+%<voc%>%<sg%>: %>a #;
+
+LEXICON N1-PL
+%<nom%>%<pl%>: %>ae #;
+%<gen%>%<pl%>: %>ārum #;
+%<dat%>%<pl%>: %>īs #;
+%<acc%>%<pl%>: %>ās #;
+%<abl%>%<pl%>: %>īs #;
+%<voc%>%<pl%>: %>ae #;
+!%<loc%>%<pl%>: %>īs #;
+
+! Second-declension masculine nouns
+! In the second declension, neuter and masculine
+! nouns have a few different endings.
+! TODO: This is the only one where the vocative
+! Differs from the nominative (singular only = -e or -i for ius)
+! -r stems are the same
+! TODO: account for r stems
+LEXICON N2-M
+N2-M-SG;
+N2-M-PL;
+
+LEXICON N2-M-SG
+%<nom%>%<sg%>: %>us #;	! diff for neuter
+%<gen%>%<sg%>: %>ī #;
+%<dat%>%<sg%>: %>ō #;
+%<acc%>%<sg%>: %>um #;
+%<abl%>%<sg%>: %>ō #;
+%<voc%>%<sg%>: %>e #;
+
+LEXICON N2-M-PL
+%<nom%>%<pl%>: %>ī #;	! diff for neuter
+%<gen%>%<pl%>: %>ōrum #;
+%<dat%>%<pl%>: %>īs #;
+%<acc%>%<pl%>: %>ōs #;	! diff for neuter
+%<abl%>%<pl%>: %>īs #;
+%<voc%>%<pl%>: %>ī #;
+
+LEXICON N2-M-r
+%<nom%>%<sg%>: #;
+%<gen%>%<sg%>: %>ī #;
+%<dat%>%<sg%>: %>ō #;
+%<acc%>%<sg%>: %>um #;
+%<abl%>%<sg%>: %>ō #;
+%<voc%>%<pl%>: #;
+N2-M-PL;
+
+! Second-declension neuter nouns
+LEXICON N2-N
+%<nom%>%<sg%>: %>um #;	! diff for neuter
+%<gen%>%<sg%>: %>ī #;
+%<dat%>%<sg%>: %>ō #;
+%<acc%>%<sg%>: %>um #;
+%<abl%>%<sg%>: %>ō #;
+%<voc%>%<sg%>: %>um #;
+
+%<nom%>%<pl%>: %>a #;	! diff for neuter
+%<gen%>%<pl%>: %>ōrum #;
+%<dat%>%<pl%>: %>īs #;
+%<acc%>%<pl%>: %>a #;	! diff for neuter
+%<abl%>%<pl%>: %>īs #;
+%<voc%>%<pl%>: %>a #;
+!%<loc%>%<pl%>: %>īs #;
+
+! In addition to the standard 2nd declension singulars,
+! Deus has an irregular alt. vocative singular
+! and multiple plurals
+LEXICON N2-M-deus
+de N2-M-SG;
+%<voc%>%<sg%>: de%>us #;
+
+%<nom%>%<pl%>: d%>ī #;
+%<nom%>%<pl%>: di%>ī #;
+%<nom%>%<pl%>: de%>ī #;
+
+%<gen%>%<pl%>: de%>ōrum #;
+%<gen%>%<pl%>: de%>um #;
+%<gen%>%<pl%>: di%>vom #;
+
+%<dat%>%<pl%>: d%>īs #;
+%<dat%>%<pl%>: di%>īs #;
+%<dat%>%<pl%>: de%>īs #;
+
+%<acc%>%<pl%>: de%>ōs #;
+
+%<abl%>%<pl%>: d%>īs #;
+%<abl%>%<pl%>: di%>īs #;
+%<abl%>%<pl%>: de%>īs #;
+
+%<voc%>%<pl%>: d%>ī #;
+%<voc%>%<pl%>: di%>ī #;
+%<voc%>%<pl%>: de%>ī #;
+
+! Masculine & feminine third-declension nouns
+! There is no regular nominative singular;
+! Those just have to be memorized
+LEXICON N3-MF
+! diff for istems; but there are none in the wordlist
+! the nominative/vocative singular is never consistent LOL
+%<gen%>%<sg%>: %>is #;
+%<dat%>%<sg%>: %>ī #;
+%<acc%>%<sg%>: %>em #;
+%<abl%>%<sg%>: %>e #;
+%<loc%>%<sg%>: %>e #;
+
+%<nom%>%<pl%>: %>ēs #;
+%<gen%>%<pl%>: %>um #;
+%<dat%>%<pl%>: %>ibus #;
+%<acc%>%<pl%>: %>ēs #;
+%<abl%>%<pl%>: %>ibus #;
+%<voc%>%<pl%>: %>ēs #;
+!%<loc%>%<pl%>: %>ibus #;
+
+! Neuters
+! nom, voc, accus singular all = lemma
+LEXICON N3-N
+%<gen%>%<sg%>: %>is #;
+%<dat%>%<sg%>: %>ī #;
+%<abl%>%<sg%>: %>e #;
+!%<loc%>%<sg%>: %>e #;
+
+%<nom%>%<pl%>: %>a #;
+%<gen%>%<pl%>: %>um #;
+%<dat%>%<pl%>: %>ibus #;
+%<acc%>%<pl%>: %>a #;
+%<abl%>%<pl%>: %>ibus #;
+%<voc%>%<pl%>: %>a #;
+!%<loc%>%<pl%>: %>ibus #;
+
+! Masculine & feminine fourth-declension nouns
+! Neuter nouns have a different pattern
+! but there are none in the wordlist
+! There are also no -ū stems in the wordlist
+LEXICON N4-MF
+%<nom%>%<sg%>: %>us #;
+%<gen%>%<sg%>: %>ūs #;
+%<dat%>%<sg%>: %>uī #;
+%<acc%>%<sg%>: %>um #;
+%<abl%>%<sg%>: %>ū #;
+%<voc%>%<sg%>: %>us #;
+!%<loc%>%<sg%>: %>ū #;
+
+%<nom%>%<pl%>: %>ūs #;
+%<gen%>%<pl%>: %>uum #;
+%<dat%>%<pl%>: %>ibus #;
+%<acc%>%<pl%>: %>ūs #;
+%<abl%>%<pl%>: %>ibus #;
+%<voc%>%<pl%>: %>ūs #;
+!%<loc%>%<pl%>: %>ibus #;
+
+! domus has a mix of 2nd & 4th declension forms
+! and also a locative
+LEXICON N4-domus
+%<nom%>%<sg%>: %>us #;
+%<gen%>%<sg%>: %>ūs #;
+%<gen%>%<sg%>: %>ī #;
+%<dat%>%<sg%>: %>uī #;
+%<dat%>%<sg%>: %>ō #;
+%<dat%>%<sg%>: %>ū #;
+%<acc%>%<sg%>: %>um #;
+%<abl%>%<sg%>: %>ō #;
+%<abl%>%<sg%>: %>ū #;
+%<voc%>%<sg%>: %>ī #;
+
+%<nom%>%<pl%>: %>ūs #;
+%<gen%>%<pl%>: %>uum #;
+%<gen%>%<pl%>: %>ōrum #;
+%<dat%>%<pl%>: %>ibus #;
+%<acc%>%<pl%>: %>ūs #;
+%<acc%>%<pl%>: %>ōs #;
+%<abl%>%<pl%>: %>ibus #;
+%<voc%>%<pl%>: %>ūs #;
+%<loc%>%<pl%>: %>ibus #;
+
+! Fifth-declension nouns
+! Yeah, this one's pretty simple.
+LEXICON N5
+%<nom%>%<sg%>: %>ēs #;
+%<gen%>%<sg%>: %>eī #;	! this one varies based on i stem or no
+%<dat%>%<sg%>: %>eī #;
+%<acc%>%<sg%>: %>em #;
+%<abl%>%<sg%>: %>ē #;
+%<voc%>%<sg%>: %>ēs #;
+!%<loc%>%<sg%>: %>ē #;
+
+%<nom%>%<pl%>: %>ēs #;
+%<gen%>%<pl%>: %>ērum #;
+%<dat%>%<pl%>: %>ēbus #;
+%<acc%>%<pl%>: %>ēs #;
+%<abl%>%<pl%>: %>ēbus #;
+%<voc%>%<pl%>: %>ēs #;
+!%<loc%>%<pl%>: %>ēbus #;
+
+LEXICON Declension1
+terra%<noun%>%<f%>: terr N1;	! "earth"
+vīta%<noun%>%<f%>: vīt N1;		! "life"
+dea%<noun%>%<f%>: de N1-dea;	! "goddess"
+
+LEXICON Declension2
+animus%<noun%>%<m%>: anim N2-M;	! "soul"/"spirit"
+deus%<noun%>%<m%>: N2-deus;		! "god" (masculine)
+locus%<noun%>%<m%>: loc N2-M;	! "place"/"location"
+vir%<noun%>%<m%>: vir N2-M-r;	! "man"
+
+! bellum is the only neuter N2 noun here
+! and one of the few nouns with a locative
+bellum%<noun%>%<n%>: bell N2-N;	! "war"
+bellum%<noun%>%<n%>%<loc%>%<sg%>: bell%>ī #;
+bellum%<noun%>%<n%>%<loc%>%<pl%>: bell%>īs #;
+
+LEXICON Declension3
+rēx%<noun%>%<m%>%<nom%>%<sg%>: rēx #;
+rēx%<noun%>%<m%>%<voc%>%<sg%>: rēx #;
+rēx%<noun%>%<m%>: rēg N3-MF;		! "king"
+
+pars%<noun%>%<f%>%<nom%>%<sg%>: pars #;
+pars%<noun%>%<f%>%<voc%>%<sg%>: pars #;
+pars%<noun%>%<f%>: part N3-MF;		! "part"
+
+pater%<noun%>%<m%>%<nom%>%<sg%>: pater #;
+pater%<noun%>%<m%>%<voc%>%<sg%>: pater #;
+pater%<noun%>%<m%>: patr N3-MF;		! "father"
+
+corpus%<noun%>%<n%>%<nom%>%<sg%>: corpus #;
+corpus%<noun%>%<n%>%<acc%>%<sg%>: corpus #;
+corpus%<noun%>%<n%>%<voc%>%<sg%>: corpus #;
+corpus%<noun%>%<n%>: corpor N3-N;	! "body"
+
+urbs%<noun%>%<f%>%<nom%>%<sg%>: urbs #;
+urbs%<noun%>%<f%>%<voc%>%<sg%>: urbs #;
+urbs%<noun%>%<f%>: urb N3-MF;		! "city"
+
+homō%<noun%>%<m%>%<nom%>%<sg%>: homō #;
+homō%<noun%>%<m%>%<nom%>%<sg%>: homō #;
+homō%<noun%>%<m%>: homin N3-MF;		! "person"
+
+tempus%<noun%>%<n%>%<nom%>%<sg%>: tempus #;
+tempus%<noun%>%<n%>%<acc%>%<sg%>: tempus #;
+tempus%<noun%>%<n%>%<voc%>%<sg%>: tempus #;
+tempus%<noun%>%<n%>: tempor N3-N;	! "time"
+
+LEXICON Declension4
+manus%<noun%>%<f%>: man N4-MF;		! "hand"
+domus%<noun%>%<f%>: dom N4-domus;	! "home"
+
+LEXICON Declension5
+rēs%<noun%>%<f%>: r N5;			! "thing"
+diēs%<noun%>%<m%>: di N5;		! "day" can be feminine in certain contexts, but formally a masculine noun
+
+! "Indeclinable" nouns
+LEXICON Indeclinable
+nihil%<noun%>%<n%>%<nom%>%<sg%>: nihil #;	! "nothing" (irregular/nondeclinable)
+nihil%<noun%>%<n%>%<acc%>%<sg%>: nil #;
