@@ -13,8 +13,8 @@ I added five rules to the Constraint Grammar:
 
 > `REMOVE V3P IF ((-1C PN1P) or (-1C PN2P));`
 
-These are all designed to disambiguate between ambiguous verb forms based on a preceding nominative case pronoun. The first two rules rule out numbers contradicted by the pronoun, and the last three eliminate persons contradicted.
+These are all designed to disambiguate between ambiguous verb forms based on a preceding nominative case pronoun. The first two rules remove numbers contradicted by the pronoun, and the last three eliminate persons contradicted.
 
 To run:
 
-> `python3 ud-scripts/conllu-analyser.py eng-analyser.tsv < input.txt | vislcg3 --trace --grammar eng.cg3'`
+> `python3 conllu-analyser.py eng-analyser.tsv < input.txt | vislcg3 --trace --grammar eng.cg3'`

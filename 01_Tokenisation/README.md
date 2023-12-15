@@ -6,7 +6,7 @@ I expect it to be thrown off by abbreviations that differ between the two langua
 
 There were a total of 54 sentences in the sample, or 53 sentence boundaries. Of these, only one was detected incorrectly, so its accuracy was 98%.
 
-It did not detect a sentence boundary at a semicolon, which was interesting behavior. However, the semicolon preceded a list, so it was correct. It also properly handled colons, parentheses, and <> brackets. The only error was in an article about a sports team from Washington, D.C., where "Washington D.C." was at the end of a sentence. In this case, the segmenter did not segment the sentences because of the abbreviation. Overall, it seems highly accurate, but stumbles when abbreviations are at the end of words, assuming abbreviations will never be a sentence boundary. This is not a major problem for Old English, as most of the abbreviations used on Old English Wikipedia are loans from other languages. But for those other languages, this can pose a serious issue.
+It did not detect a sentence boundary at a semicolon, which was interesting behavior. However, the semicolon preceded a list, so it was correct. It also properly handled colons, parentheses, and <> brackets. The only error was in an article about a sports team from Washington, D.C., where "Washington D.C." was at the end of a sentence. In this case, the segmenter did not segment the sentences because of the abbreviation. Overall, it seems highly accurate, but stumbles when abbreviations are at the end of sentences, assuming abbreviations will never be a sentence boundary. This is not a major problem for Old English, as most of the abbreviations used on Old English Wikipedia are loans from other languages. But for those other languages, this can pose a serious issue.
 
 # Segmentation: Maxmatch Implementation
 
@@ -14,7 +14,7 @@ To use my implementation of maxmatch, run `python3 maxmatch.py`. It expects two 
 
 Note that my implementation requires the `pyconll` Python package.
 
-This implementation works well until it encounters a word that is not in its dictionary at all. Once it encountered a completely unknown token, everything else in the sentence would be messed up.
+This implementation works well until it encounters a word that is not in its dictionary at all. Once it encountered a completely unknown token, everything else in the sentence was often lumped together.
 
 In earlier iterations, this was very common with punctuation marks, so I added the comma and quotation marks to the dictionary manually in the hopes that this would help.
 
